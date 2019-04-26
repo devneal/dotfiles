@@ -1,7 +1,7 @@
-# dotfiles
+#!/bin/bash
 
 # vim
-./compile_full_vim.sh
+./install_vim.sh
 
 # polybar
 ./install_polybar.sh

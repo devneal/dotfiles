@@ -117,15 +117,13 @@ if ! shopt -oq posix; then
 fi
 
 PS1="> "
-export PYTHONPATH="/home/devneal/manim:/home/devneal/eulertour/backend"
 export PYTHONBREAKPOINT="ipdb.set_trace"
 export EDITOR="vim"
 
 
 alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bashrc"
+alias i3c="vim ~/.config/i3/config"
 alias sbrc="source ~/.bashrc"
-alias mnm="cd ~/Public/manim && \
-           source ~/Public/python_virtual_environments/manim/bin/activate"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

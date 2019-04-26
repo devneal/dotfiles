@@ -19,15 +19,13 @@ client.urgent           #2f343a #900000 #ffffff #900000
 floating_modifier $mod
 
 set $mod Mod4
-set $browser vivaldi
+set $browser x-www-browser
 font pango:System San Francisco Display 7
 for_window [class="^.*"] border pixel 2
 gaps inner 12
 
 # start a terminal
-# bindsym $mod+Return exec urxvt -cd "`xcwd`"
-# bindsym $mod+Return exec st
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec i3-sensible-terminal
 # # Refresh urxvt
 bindsym $mod+u exec "xrdb ~/.Xresources"
 # start rofi (a program launcher)
@@ -223,29 +221,30 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # startup commands
-exec compton -b
-exec feh --bg-scale "/home/devneal/.wallpaper"
-exec xrdb ~/.Xresources
 exec_always --no-startup-id killall polybar; polybar -c /home/devneal/.config/polybar/config laptop-base
-exec_always --no-startup-id dropbox start
-# exec_always --no-startup-id /usr/bin/python2.7 /home/devneal/Public/i3-alternating-layout/alternating_layouts.py
-exec i3-msg "workspace $ws1; append_layout ~/.config/i3/workspace1_new.json"
-exec i3-msg "workspace $ws2; append_layout ~/.config/i3/workspace2.json"
-exec i3-msg "workspace $ws3; append_layout ~/.config/i3/workspace3.json"
-exec i3-msg "workspace $ws10; append_layout ~/.config/i3/workspace10.json"
-assign [class="Rhythmbox"] $ws10
-for_window [class="Spotify"] move to workspace $ws10
-# exec i3-msg "exec GTOP='true' urxvt --title gtop"
-# exec i3-msg "exec NEOFETCH='true' urxvt --title neofetch"
-# exec i3-msg "exec CALCURSE='true' urxvt --title calcurse"
-exec i3-msg "exec GTOP='true' termite -t gtop"
-exec i3-msg "exec NEOFETCH='true' termite -t neofetch"
-exec $browser
-# exec i3-msg "exec urxvt --title ws3-term"
-exec i3-msg "exec termite -t ws3-term"
-exec spotify
-exec i3-msg "workspace $ws1"
-exec --no-startup-id nm-applet
-exec --no-startup-id redshift
-# Set initial keyboard delay 300ms, repeat 40ms
-exec --no-startup-id xset r rate 300 40
+# exec compton -b
+# exec feh --bg-scale "/home/devneal/.wallpaper"
+# exec xrdb ~/.Xresources
+# exec_always --no-startup-id killall polybar; polybar -c /home/devneal/.config/polybar/config laptop-base
+# exec_always --no-startup-id dropbox start
+# # exec_always --no-startup-id /usr/bin/python2.7 /home/devneal/Public/i3-alternating-layout/alternating_layouts.py
+# exec i3-msg "workspace $ws1; append_layout ~/.config/i3/workspace1_new.json"
+# exec i3-msg "workspace $ws2; append_layout ~/.config/i3/workspace2.json"
+# exec i3-msg "workspace $ws3; append_layout ~/.config/i3/workspace3.json"
+# exec i3-msg "workspace $ws10; append_layout ~/.config/i3/workspace10.json"
+# assign [class="Rhythmbox"] $ws10
+# for_window [class="Spotify"] move to workspace $ws10
+# # exec i3-msg "exec GTOP='true' urxvt --title gtop"
+# # exec i3-msg "exec NEOFETCH='true' urxvt --title neofetch"
+# # exec i3-msg "exec CALCURSE='true' urxvt --title calcurse"
+# exec i3-msg "exec GTOP='true' termite -t gtop"
+# exec i3-msg "exec NEOFETCH='true' termite -t neofetch"
+# exec $browser
+# # exec i3-msg "exec urxvt --title ws3-term"
+# exec i3-msg "exec termite -t ws3-term"
+# exec spotify
+# exec i3-msg "workspace $ws1"
+# exec --no-startup-id nm-applet
+# exec --no-startup-id redshift
+# # Set initial keyboard delay 300ms, repeat 40ms
+# exec --no-startup-id xset r rate 300 40

@@ -1,3 +1,10 @@
+""" Automatically install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 """ Plugins
 call plug#begin()
 Plug 'godlygeek/tabular'
@@ -157,6 +164,5 @@ set relativenumber              " display line numbers relative to cursor
 set encoding=UTF-8              " allow for devicons
 set pyxversion=3                " use python 3 for pyx commands
 set nomodeline                  " disable modelines
-colorscheme ron
 syntax enable
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
