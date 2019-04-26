@@ -7,7 +7,7 @@ autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev
 
 sudo apt install -y arandr
 
-cd ~/Public
+cd ~/Code
 
 # clone the repository
 git clone https://www.github.com/Airblader/i3 i3-gaps

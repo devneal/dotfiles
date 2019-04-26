@@ -5,6 +5,6 @@ libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev \
 libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb \
 libxcb-ewmh2
 
-cd ~/Public/
+cd ~/Code
 git clone https://github.com/jaagr/polybar.git
 cd polybar && ./build.sh

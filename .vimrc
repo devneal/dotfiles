@@ -7,23 +7,23 @@ endif
 
 """ Plugins
 call plug#begin()
-Plug 'godlygeek/tabular'
-Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'mhinz/vim-startify'
+Plug 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'wsdjeg/vim-fetch'
-Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'machakann/vim-sandwich'
-
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'Shougo/deoplete.nvim'
-" Plug 'lifepillar/vim-mucomplete'
-Plug 'w0rp/ale'
-" Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
+
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'lifepillar/vim-mucomplete'
+" Plug 'w0rp/ale'
+" Plug 'tpope/vim-surround'
 call plug#end()
 
 set rtp+=~/.fzf
@@ -32,10 +32,10 @@ let g:startify_change_to_dir = 0
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsFlyMode = 0
 
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 " <TAB>: completion.
-inoremap <expr><tab>  pumvisible() ? "\<C-n>" : "\<tab>"
-inoremap <expr><s-tab>  pumvisible() ? "\<C-p>" : "\<tab>"
+" inoremap <expr><tab>  pumvisible() ? "\<C-n>" : "\<tab>"
+" inoremap <expr><s-tab>  pumvisible() ? "\<C-p>" : "\<tab>"
 
 " let g:mucomplete#enable_auto_at_startup = 1
 " let g:mucomplete#chains = {}
@@ -44,8 +44,8 @@ inoremap <expr><s-tab>  pumvisible() ? "\<C-p>" : "\<tab>"
 "   let g:mucomplete#chains.python = ['path', 'keyn'] 
 " endif
 
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_python_flake8_options = '--ignore=F405,E501'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" let g:ale_python_flake8_options = '--ignore=F405,E501'
 
 let g:tagbar_sort = 0
 
@@ -76,8 +76,8 @@ autocmd filetype javascript inoremap ,cc class <++> extends Component {<cr>state
 
 """ plugin leader mappings
 let mapleader=" "
-nnoremap <pageup>   :ALEPreviousWrap<cr>
-nnoremap <pagedown> :ALENextWrap<cr>
+" nnoremap <pageup>   :ALEPreviousWrap<cr>
+" nnoremap <pagedown> :ALENextWrap<cr>
 nnoremap <leader>t  :NERDTreeToggle<cr>
 nnoremap <leader>T  :NERDTreeFind<cr>
 nnoremap <leader>b  :TagbarOpenAutoClose<cr>

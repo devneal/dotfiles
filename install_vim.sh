@@ -8,7 +8,7 @@
 # Use:
 #   ./compile_full_vim.sh
 
-sudo apt-get remove -y \
+sudo apt remove -y \
 	vim \
 	vim-runtime \
 	gvim \
@@ -16,7 +16,7 @@ sudo apt-get remove -y \
 	vim-common \
 	vim-gui-common
 
-sudo apt-get install -y \
+sudo apt install -y \
 	libncurses5-dev \
 	libgnome2-dev \
 	libgnomeui-dev \
@@ -32,7 +32,7 @@ sudo apt-get install -y \
     ruby-dev \
 	mercurial
 
-cd ~/Public
+cd ~/Code
 git clone https://github.com/vim/vim.git
 cd vim
 ./configure --with-features=huge \
