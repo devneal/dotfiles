@@ -30,7 +30,9 @@ sudo apt install -y \
 	python-dev \
 	python3-dev \
     ruby-dev \
-	mercurial
+	git \
+    ripgrep \
+    fzf
 
 cd ~/Code
 git clone https://github.com/vim/vim.git

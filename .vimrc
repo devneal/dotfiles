@@ -7,6 +7,7 @@ endif
 
 """ Plugins
 call plug#begin()
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'mhinz/vim-startify'
@@ -55,6 +56,13 @@ let g:NERDTreeMapOpenVSplit = "v"
 let g:NERDTreeMapPreviewVSplit = "gv"
 let g:NERDTreeMapOpenSplit = "s"
 let g:NERDTreeMapPreviewSplit = "gs"
+
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce (not to mention that libvte based terminals
+" incorrectly contain bce in their terminfo files). This causes
+" incorrect background rendering when using a color theme with a
+" background color.
+let &t_ut=''
 
 """ automatic paste formatting (https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode)
 let &t_SI .= "\<Esc>[?2004h"
