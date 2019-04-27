@@ -10,6 +10,11 @@ if [ -f $HOME/.vimrc ]; then
 fi
 ln -s {$(pwd),$HOME}/.vimrc
 
+if [ -f $HOME/.tmux.conf ]; then
+    rm $HOME/.tmux.conf
+fi
+ln -s {$(pwd),$HOME}/.tmux.conf
+
 if [ ! -d $HOME/.config/i3 ]; then
     mkdir -p $HOME/.config/i3
 elif [ -f $HOME/.config/i3/config ]; then
