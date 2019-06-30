@@ -1,7 +1,7 @@
 sudo apt install -y flex bison \
     librsvg2-dev
 
-cd ~/Publi
+cd ~/Code
 git clone --recursive https://github.com/DaveDavenport/rofi
 cd rofi/
 autoreconf -i

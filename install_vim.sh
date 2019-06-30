@@ -31,8 +31,12 @@ sudo apt install -y \
 	python3-dev \
     ruby-dev \
 	git \
-    ripgrep \
-    fzf
+    ripgrep
+
+cd ~/Code
+git clone https://github.com/junegunn/fzf.git
+cd fzf
+./install --all
 
 cd ~/Code
 git clone https://github.com/vim/vim.git
