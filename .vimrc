@@ -8,7 +8,6 @@ endif
 """ Plugins
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'Shougo/denite.nvim'
 Plug 'Shougo/defx.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
@@ -121,6 +120,7 @@ let g:lightline = {
       \   'cocstatus': 'coc#status'
       \ },
       \ }
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " ============================================================================
 " COC.NVIM END
 " ============================================================================
@@ -142,9 +142,14 @@ function! s:defx_my_settings() abort
 
   " Open commands
   " nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
-  nnoremap <silent><buffer><expr> <CR> defx#do_action('open', 'wincmd w \| drop')
-  nnoremap <silent><buffer><expr> l defx#do_action('open')
-  nnoremap <silent><buffer><expr> v defx#do_action('open', 'vsplit')
+
+  " nnoremap <silent><buffer><expr> <CR> defx#do_action('open', 'wincmd w \| drop')
+  " nnoremap <silent><buffer><expr> l defx#do_action('open', 'wincmd w \| drop')
+  " nnoremap <silent><buffer><expr> v defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> <CR> defx#do_action('drop')
+  nnoremap <silent><buffer><expr> l defx#do_action('drop')
+  nnoremap <silent><buffer><expr> v defx#do_action('drop')
+
   " Preview current file
   " nnoremap <silent><buffer><expr> s defx#do_action('open', 'pedit')
 
@@ -173,8 +178,9 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
   nnoremap <silent><buffer><expr> <C-r> defx#do_action('redraw') . ':nohlsearch<cr>:syntax sync fromstart<cr><c-l>'
   nnoremap <silent><buffer><expr> <c-l> ':wincmd l<cr>'
+  nnoremap <silent><buffer><expr> <leader>t defx#do_action('quit')
 
-  nnoremap <silent><buffer><expr><nowait> <Space> defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr><nowait> s defx#do_action('toggle_select') . 'j'
   nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
 
   nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns', 'mark:filename:type:size:time')
@@ -186,89 +192,95 @@ endfunction
 
 " nnoremap <silent> <leader>o :call OpenRanger()<cr>
 " nnoremap <silent>- :Defx `expand('%:p:h')` -show-ignored-files -search=`expand('%:p')`<CR>
+call defx#custom#option('_', {
+      \ 'winwidth': 30,
+      \ 'split': 'vertical',
+      \ 'direction': 'topleft',
+      \ 'toggle': 1,
+      \ })
 " ============================================================================
 " DEFX.NVIM END
 " ============================================================================
 
-" ============================================================================
-" DENITE.NVIM START
-" ============================================================================
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> i     denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> q     denite#do_map('quit')
-  nnoremap <silent><buffer><expr> d     denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p     denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> <cr>  denite#do_map('do_action', 'open')
-  nnoremap <silent><buffer><expr> <c-t> denite#do_map('do_action', 'tabopen')
-  nnoremap <silent><buffer><expr> <c-v> denite#do_map('do_action', 'vsplit')
-  nnoremap <silent><buffer><expr> <c-s> denite#do_map('do_action', 'split')
-endfunction
-
-" Use ripgrep for searching current directory for files
-" By default, ripgrep will respect rules in .gitignore
-"   --files: Print each file that would be searched (but don't search)
-"   --glob:  Include or exclues files for searching that match the given glob
-"            (aka ignore .git files)
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-
-" Use ripgrep in place of "grep"
-call denite#custom#var('grep', 'command', ['rg'])
-
-" Custom options for ripgrep
-"   --vimgrep:  Show results with every match on it's own line
-"   --hidden:   Search hidden directories and files
-"   --heading:  Show the file name above clusters of matches from each file
-"   --S:        Search case insensitively if the pattern is all lowercase
-call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-
-" Recommended defaults for ripgrep via Denite docs
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-" Remove date from buffer list
-call denite#custom#var('buffer', 'date_format', '')
-
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-
-" Custom options for Denite
-"   auto_resize             - Auto resize the Denite window height automatically.
-"   prompt                  - Customize denite prompt
-"   direction               - Specify Denite window direction as directly below current pane
-"   winminheight            - Specify min height for Denite window
-"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-"   prompt_highlight        - Specify color of prompt
-"   highlight_matched_char  - Matched characters highlight
-"   highlight_matched_range - matched range highlight
-let s:denite_options = {'default' : {
-\ 'auto_resize': 1,
-\ 'prompt': 'λ:',
-\ 'direction': 'rightbelow',
-\ 'winminheight': '10',
-\ 'highlight_mode_insert': 'Visual',
-\ 'highlight_mode_normal': 'Visual',
-\ 'prompt_highlight': 'Function',
-\ 'highlight_matched_char': 'Function',
-\ 'highlight_matched_range': 'Normal',
-\ 'start_filter': 1
-\ }}
-
-" Loop through denite options and enable them
-function! s:profile(opts) abort
-  for l:fname in keys(a:opts)
-    for l:dopt in keys(a:opts[l:fname])
-      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-    endfor
-  endfor
-endfunction
-
-call s:profile(s:denite_options)
-" ============================================================================
-" DENITE.NVIM END
-" ============================================================================
+" " ============================================================================
+" " DENITE.NVIM START
+" " ============================================================================
+" autocmd FileType denite call s:denite_my_settings()
+" function! s:denite_my_settings() abort
+"   nnoremap <silent><buffer><expr> i     denite#do_map('open_filter_buffer')
+"   nnoremap <silent><buffer><expr> q     denite#do_map('quit')
+"   nnoremap <silent><buffer><expr> d     denite#do_map('do_action', 'delete')
+"   nnoremap <silent><buffer><expr> p     denite#do_map('do_action', 'preview')
+"   nnoremap <silent><buffer><expr> <cr>  denite#do_map('do_action', 'open')
+"   nnoremap <silent><buffer><expr> <c-t> denite#do_map('do_action', 'tabopen')
+"   nnoremap <silent><buffer><expr> <c-v> denite#do_map('do_action', 'vsplit')
+"   nnoremap <silent><buffer><expr> <c-s> denite#do_map('do_action', 'split')
+" endfunction
+" 
+" " Use ripgrep for searching current directory for files
+" " By default, ripgrep will respect rules in .gitignore
+" "   --files: Print each file that would be searched (but don't search)
+" "   --glob:  Include or exclues files for searching that match the given glob
+" "            (aka ignore .git files)
+" call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+" 
+" " Use ripgrep in place of "grep"
+" call denite#custom#var('grep', 'command', ['rg'])
+" 
+" " Custom options for ripgrep
+" "   --vimgrep:  Show results with every match on it's own line
+" "   --hidden:   Search hidden directories and files
+" "   --heading:  Show the file name above clusters of matches from each file
+" "   --S:        Search case insensitively if the pattern is all lowercase
+" call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
+" 
+" " Recommended defaults for ripgrep via Denite docs
+" call denite#custom#var('grep', 'recursive_opts', [])
+" call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+" call denite#custom#var('grep', 'separator', ['--'])
+" call denite#custom#var('grep', 'final_opts', [])
+" 
+" " Remove date from buffer list
+" call denite#custom#var('buffer', 'date_format', '')
+" 
+" call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+" call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+" 
+" " Custom options for Denite
+" "   auto_resize             - Auto resize the Denite window height automatically.
+" "   prompt                  - Customize denite prompt
+" "   direction               - Specify Denite window direction as directly below current pane
+" "   winminheight            - Specify min height for Denite window
+" "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
+" "   prompt_highlight        - Specify color of prompt
+" "   highlight_matched_char  - Matched characters highlight
+" "   highlight_matched_range - matched range highlight
+" let s:denite_options = {'default' : {
+" \ 'auto_resize': 1,
+" \ 'prompt': 'λ:',
+" \ 'direction': 'rightbelow',
+" \ 'winminheight': '10',
+" \ 'highlight_mode_insert': 'Visual',
+" \ 'highlight_mode_normal': 'Visual',
+" \ 'prompt_highlight': 'Function',
+" \ 'highlight_matched_char': 'Function',
+" \ 'highlight_matched_range': 'Normal',
+" \ 'start_filter': 1
+" \ }}
+" 
+" " Loop through denite options and enable them
+" function! s:profile(opts) abort
+"   for l:fname in keys(a:opts)
+"     for l:dopt in keys(a:opts[l:fname])
+"       call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
+"     endfor
+"   endfor
+" endfunction
+" 
+" call s:profile(s:denite_options)
+" " ============================================================================
+" " DENITE.NVIM END
+" " ============================================================================
 
 let g:startify_change_to_dir = 0
 let g:AutoPairsMultilineClose = 0
@@ -322,15 +334,16 @@ autocmd BufNewFile,BufRead *.jsx set filetype=javascript
 autocmd filetype python inoremap ,bp breakpoint(context=9)<esc>
 autocmd filetype javascript inoremap ,imrc import React, { Component } from 'react';<cr>
 autocmd filetype javascript inoremap ,cc class <++> extends Component {<cr>state = {}<cr>render() {<cr>return ( <div>hello world</div> );<cr>}<cr>}<cr><cr>export default <++>;<esc><s-v>7k:s/<++>//g<left><left>
-autocmd FileType json syntax match Comment +\/\/.\+$+
+autocmd fileType json syntax match Comment +\/\/.\+$+
+autocmd fileType javascript setlocal ts=2 sts=2 sw=2
 
 """ plugin leader mappings
 let mapleader=" "
 nnoremap <leader>b :TagbarOpenAutoClose<cr>
-nnoremap <leader>t :Defx -split=vertical -winwidth=30 -direction=topleft<CR>
+nnoremap <leader>t :Defx<CR>
 nnoremap <leader>T :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
-nnoremap <leader>z :Denite file/rec -split=floating -winrow=1<CR>
-nnoremap <leader>r :<C-u>Denite grep:. -no-empty<CR>
+nnoremap <leader>z :CocList files<CR>
+nnoremap <leader>r :<C-u>CocList grep<CR>
 nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
 " remap for rename current word
 nmap <leader>cr <Plug>(coc-rename)
@@ -410,6 +423,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gw :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
 
 """ settings
@@ -421,6 +435,7 @@ set completeopt+=noselect       " don't select a match from the menu automatical
 set shortmess+=c                " don't show completion menu messages
 set tabstop=4                   " number of spaces that a <tab> in the file counts for
 set shiftwidth=4                " number of spaces to use for autoindent ('cindent', >>, <<, etc.)
+set softtabstop=4               " number of spaces that a <tab> counts for while performing editing operations, like inserting a <tab> or using <bs>
 set expandtab                   " use the appropriate number of spaces to insert a <tab> in insert mode
 set backspace=indent,eol,start  " allow backspacing over everything
 set splitright                  " vertical splits open to the right
