@@ -295,7 +295,7 @@ let g:AutoPairsFlyMode = 0
 " let g:mucomplete#chains = {}
 " if !(has('python') || has('python3'))
 "   " define whatever completion chain you want, but without 'omni':
-"   let g:mucomplete#chains.python = ['path', 'keyn'] 
+"   let g:mucomplete#chains.python = ['path', 'keyn']
 " endif
 
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -337,6 +337,16 @@ autocmd filetype javascript inoremap ,cc class <++> extends Component {<cr>state
 autocmd fileType json syntax match Comment +\/\/.\+$+
 autocmd fileType javascript setlocal ts=2 sts=2 sw=2
 
+" split build, vsplit build, tab build
+autocmd filetype cpp nnoremap ,sb :exe "split ".expand("%:h")."/BUILD"<cr>
+autocmd filetype cpp nnoremap ,vb :exe "vsplit ".expand("%:h")."/BUILD"<cr>
+autocmd filetype cpp nnoremap ,tb :exe "tabedit ".expand("%:h")."/BUILD"<cr>
+
+" split deps, vsplit deps, tab deps
+autocmd filetype cpp nnoremap ,sd :let x=expand("%:t")<cr>:exe "split ".expand("%:h")."/BUILD"<cr>gg/"<c-r>=x<cr>"<cr>/deps<cr>
+autocmd filetype cpp nnoremap ,vd :let x=expand("%:t")<cr>:exe "vsplit ".expand("%:h")."/BUILD"<cr>gg/"<c-r>=x<cr>"<cr>/deps<cr>
+autocmd filetype cpp nnoremap ,td :let x=expand("%:t")<cr>:exe "tabedit ".expand("%:h")."/BUILD"<cr>gg/"<c-r>=x<cr>"<cr>/deps<cr>
+
 """ plugin leader mappings
 let mapleader=" "
 nnoremap <leader>b :TagbarOpenAutoClose<cr>
@@ -377,8 +387,13 @@ nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
 """ general leader mappings
 " copy filename to clipboard
-nnoremap <leader>f :let @"=expand("%")<CR>
-nnoremap <leader>p :let @"=expand("%:p")<CR>
+nmap <leader>cff :let @"=expand("%")<CR>     " copy file full
+nmap <leader>cfh :let @"=expand("%:h")<CR>   " copy file head
+nmap <leader>cft :let @"=expand("%:t")<CR>   " copy file tail
+
+nmap <leader>cpf :let @"=expand("%:p")<CR>   " copy path full
+nmap <leader>cph :let @"=expand("%:p:h")<CR> " copy path head
+nmap <leader>cpt :let @"=expand("%:p:t")<CR> " copy path tail
 nnoremap <leader>o :tabedit<space>
 nnoremap <leader>e :edit<space>
 nnoremap <leader>h :help<space>
