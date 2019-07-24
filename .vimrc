@@ -252,7 +252,8 @@ let s:denite_options = {'default' : {
 \ 'highlight_mode_normal': 'Visual',
 \ 'prompt_highlight': 'Function',
 \ 'highlight_matched_char': 'Function',
-\ 'highlight_matched_range': 'Normal'
+\ 'highlight_matched_range': 'Normal',
+\ 'start_filter': 1
 \ }}
 
 " Loop through denite options and enable them
@@ -327,6 +328,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 let mapleader=" "
 nnoremap <leader>b :TagbarOpenAutoClose<cr>
 nnoremap <leader>t :Defx -split=vertical -winwidth=30 -direction=topleft<CR>
+nnoremap <leader>T :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 nnoremap <leader>z :Denite file/rec -split=floating -winrow=1<CR>
 nnoremap <leader>r :<C-u>Denite grep:. -no-empty<CR>
 nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
@@ -438,7 +440,11 @@ set belloff=all                 " never ring the bell
 set number                      " display line numbers
 set relativenumber              " display line numbers relative to cursor
 set encoding=UTF-8              " allow for devicons
-set pyxversion=3                " use python 3 for pyx commands
+if has('nvim')
+    set guicursor=              " disable cursor styling
+else
+    set pyxversion=3            " use python 3 for pyx commands
+endif
 set nomodeline                  " disable modelines
 syntax enable
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
