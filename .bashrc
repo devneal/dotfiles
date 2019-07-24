@@ -136,6 +136,7 @@ alias rgc="vim ~/.config/i3-regolith/config"
 alias alc="vim ~/.config/alacritty/alacritty.yml"
 alias sbrc="source ~/.bashrc"
 alias color="alacritty-colorscheme -C ~/.config/alacritty/colorschemes"
+alias vim="~/.local/bin/nvim.appimage"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
