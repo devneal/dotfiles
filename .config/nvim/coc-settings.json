@@ -1,6 +1,8 @@
 {
 	"list.insertMappings": {
 		"<C-t>": "action:tabe",
+		"<C-v>": "action:vsplit",
+		"<C-s>": "action:split",
 		"<C-w>": "command:wincmd k",
         "<C-x>": "do:exit",
         "<C-l>": "do:switch"

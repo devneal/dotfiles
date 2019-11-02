@@ -116,6 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+xset r rate 190 55
 PS1="> "
 export EDITOR="vim"
 export PYTHONBREAKPOINT="ipdb.set_trace"
