@@ -124,6 +124,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Code/python
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /home/devneal/.local/bin/virtualenvwrapper.sh
+export TERMINAL="/usr/bin/alacritty"
 
 export DOMAIN="localhost"
 export FRONTEND_CONFIG_PATH="/etc/eulertour/frontend"
