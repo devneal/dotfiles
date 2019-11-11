@@ -20,6 +20,7 @@ Plug 'wsdjeg/vim-fetch'
 Plug 'vim-airline/vim-airline'
 Plug 'machakann/vim-sandwich'
 Plug 'ryanoasis/vim-devicons'
+Plug 'posva/vim-vue'
 call plug#end()
 
 " ============================================================================
@@ -139,19 +140,21 @@ augroup END
 
 
 function! s:defx_my_settings() abort
+  "Navigation
+  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer><expr> l defx#do_action('drop')
+  nnoremap <silent><buffer><expr> o defx#do_action('open_or_close_tree')
+  nnoremap <silent><buffer><expr> ~ defx#do_action('cd', [getcwd()])
 
   " Open commands
-  " nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
-
-  " nnoremap <silent><buffer><expr> <CR> defx#do_action('open', 'wincmd w \| drop')
-  " nnoremap <silent><buffer><expr> l defx#do_action('open', 'wincmd w \| drop')
-  " nnoremap <silent><buffer><expr> v defx#do_action('open', 'vsplit')
-  nnoremap <silent><buffer><expr> <CR> defx#do_action('drop')
-  nnoremap <silent><buffer><expr> l defx#do_action('drop')
-  nnoremap <silent><buffer><expr> v defx#do_action('drop')
+  nnoremap <silent><buffer><expr> v defx#do_action('drop', 'vsplit')
+  nnoremap <silent><buffer><expr> s defx#do_action('drop', 'split')
+  nnoremap <silent><buffer><expr> t defx#do_action('drop', 'tabedit')
 
   " Preview current file
-  " nnoremap <silent><buffer><expr> s defx#do_action('open', 'pedit')
+  nnoremap <silent><buffer><expr> p defx#do_action('open', 'pedit')
 
   " File manipulation
   nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
@@ -163,34 +166,27 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> dd defx#do_action('move')
   nnoremap <silent><buffer><expr> pp defx#do_action('paste')
 
-  "Navigation
-  nnoremap <silent><buffer><expr> - defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> ~ defx#do_action('cd', [getcwd()])
-
   " Miscellaneous actions
   nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
   nnoremap <silent><buffer><expr> q defx#do_action('quit')
   nnoremap <silent><buffer><expr> x defx#do_action('execute_system')
   nnoremap <silent><buffer><expr> yp defx#do_action('yank_path')
-  nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
-  nnoremap <silent><buffer><expr> <C-r> defx#do_action('redraw') . ':nohlsearch<cr>:syntax sync fromstart<cr><c-l>'
+  nnoremap <silent><buffer><expr> <c-g> defx#do_action('print')
+  nnoremap <silent><buffer><expr> <c-r> defx#do_action('redraw') . ':nohlsearch<cr>:syntax sync fromstart<cr><c-l>'
   nnoremap <silent><buffer><expr> <c-l> ':wincmd l<cr>'
+  nnoremap <silent><buffer><expr> <c-n> ':tabprevious<cr>:file<cr>'
+  nnoremap <silent><buffer><expr> <c-m> ':tabnext<cr>:file<cr>'
   nnoremap <silent><buffer><expr> <leader>t defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <CR> defx#do_action('drop')
 
-  nnoremap <silent><buffer><expr><nowait> s defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
+  " nnoremap <silent><buffer><expr><nowait> s defx#do_action('toggle_select') . 'j'
+  " nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
 
   nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns', 'mark:filename:type:size:time')
   nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
 
-  " nnoremap <silent><buffer><expr>e defx#do_action('call', 'DefxExternalExplorer')
-  nnoremap <silent><buffer><expr> e defx#do_action('call', 'OpenRanger')
 endfunction
 
-" nnoremap <silent> <leader>o :call OpenRanger()<cr>
 " nnoremap <silent>- :Defx `expand('%:p:h')` -show-ignored-files -search=`expand('%:p')`<CR>
 call defx#custom#option('_', {
       \ 'winwidth': 30,
@@ -241,6 +237,7 @@ autocmd filetype javascript inoremap ,imrc import React, { Component } from 'rea
 autocmd filetype javascript inoremap ,cc class <++> extends Component {<cr>state = {}<cr>render() {<cr>return ( <div>hello world</div> );<cr>}<cr>}<cr><cr>export default <++>;<esc><s-v>7k:s/<++>//g<left><left>
 autocmd fileType json syntax match Comment +\/\/.\+$+
 autocmd fileType javascript setlocal ts=2 sts=2 sw=2
+autocmd BufRead,BufNewFile *.htm,*.html,*.vue setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " split build, vsplit build, tab build
 autocmd filetype cpp nnoremap ,sb :exe "split ".expand("%:h")."/BUILD"<cr>
@@ -303,13 +300,14 @@ nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 """ general leader mappings
 nmap <leader>vrc :edit ~/Code/dotfiles/.vimrc<cr>
 " copy filename to clipboard
-nmap <leader>cff :let @"=expand("%")<CR>     " copy file full
-nmap <leader>cfh :let @"=expand("%:h")<CR>   " copy file head
-nmap <leader>cft :let @"=expand("%:t")<CR>   " copy file tail
+nnoremap <leader>cff :let @"=expand("%")<cr>     " copy file full
+nnoremap <leader>cfh :let @"=expand("%:h")<cr>   " copy file head
+nnoremap <leader>cft :let @"=expand("%:t")<cr>   " copy file tail
 
-nmap <leader>cpf :let @"=expand("%:p")<CR>   " copy path full
-nmap <leader>cph :let @"=expand("%:p:h")<CR> " copy path head
-nmap <leader>cpt :let @"=expand("%:p:t")<CR> " copy path tail
+nnoremap <leader>cpf :let @"=expand("%:p")<cr>   " copy path full
+nnoremap <leader>cph :let @"=expand("%:p:h")<cr> " copy path head
+nnoremap <leader>cpt :let @"=expand("%:p:t")<cr> " copy path tail
+nnoremap <leader>p :let @"=expand("%:p")<CR>
 nnoremap <leader>o :tabedit<space>
 nnoremap <leader>e :edit<space>
 nnoremap <leader>h :help<space>
@@ -324,10 +322,10 @@ nnoremap <leader>, <c-o>
 nnoremap <leader>s :sp<cr>
 nnoremap <leader>v :vsp<cr>
 " create terminals
-nnoremap <leader>st  :sp<cr>:terminal<cr>
-nnoremap <leader>vt  :vsp<cr>:terminal<cr>
-nnoremap <leader>tt  :tabedit<cr>:terminal<cr>
-nnoremap <leader>tty :terminal<cr>
+nnoremap <leader>st  :sp<cr>:terminal<cr>i
+nnoremap <leader>vt  :vsp<cr>:terminal<cr>i
+nnoremap <leader>tt  :tabedit<cr>:terminal<cr>i
+nnoremap <leader>tty :terminal<cr>i
 " move tabs
 nnoremap <leader>n :tabmove -1<cr>
 nnoremap <leader>m :tabmove +1<cr>
@@ -366,7 +364,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gw :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
-" tnoremap <esc> <c-\><c-n>
+tnoremap <esc> <c-\><c-n>
 tnoremap jk    <c-\><c-n>
 tnoremap <c-h> <c-\><c-n>:wincmd h<cr>
 tnoremap <c-j> <c-\><c-n>:wincmd j<cr>

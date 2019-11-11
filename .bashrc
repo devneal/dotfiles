@@ -116,6 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+xset r rate 190 55
 PS1="> "
 export EDITOR="vim"
 export PYTHONBREAKPOINT="ipdb.set_trace"
@@ -123,6 +124,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Code/python
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /home/devneal/.local/bin/virtualenvwrapper.sh
+export TERMINAL="/usr/bin/alacritty"
 
 export DOMAIN="localhost"
 export FRONTEND_CONFIG_PATH="/etc/eulertour/frontend"
