@@ -239,6 +239,26 @@ autocmd fileType json syntax match Comment +\/\/.\+$+
 autocmd fileType javascript setlocal ts=2 sts=2 sw=2
 autocmd BufRead,BufNewFile *.htm,*.html,*.vue setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+" split build, vsplit build, tab build
+autocmd filetype cpp nnoremap ,sb :exe "split ".expand("%:h")."/BUILD"<cr>
+autocmd filetype cpp nnoremap ,vb :exe "vsplit ".expand("%:h")."/BUILD"<cr>
+autocmd filetype cpp nnoremap ,tb :exe "tabedit ".expand("%:h")."/BUILD"<cr>
+
+" split deps, vsplit deps, tab deps
+autocmd filetype cpp nnoremap ,sd :let x=expand("%:t")<cr>:exe "split ".expand("%:h")."/BUILD"<cr>gg/"<c-r>=x<cr>"<cr>/deps<cr>
+autocmd filetype cpp nnoremap ,vd :let x=expand("%:t")<cr>:exe "vsplit ".expand("%:h")."/BUILD"<cr>gg/"<c-r>=x<cr>"<cr>/deps<cr>
+autocmd filetype cpp nnoremap ,td :let x=expand("%:t")<cr>:exe "tabedit ".expand("%:h")."/BUILD"<cr>gg/"<c-r>=x<cr>"<cr>/deps<cr>
+
+" split header, vsplit header, tab header
+autocmd filetype cpp nnoremap ,sh :exe "split ".expand("%:h")."/".expand("%:t")[:-3]."h"<cr>
+autocmd filetype cpp nnoremap ,vh :exe "vsplit ".expand("%:h")."/".expand("%:t")[:-3]."h"<cr>
+autocmd filetype cpp nnoremap ,th :exe "tabedit ".expand("%:h")."/".expand("%:t")[:-3]."h"<cr>
+
+" make terminal default mode insert (false positive on restore session)
+if has('nvim')
+    autocmd TermOpen term://* startinsert
+endif
+
 """ plugin leader mappings
 let mapleader=" "
 nnoremap <leader>b :TagbarOpenAutoClose<cr>
@@ -334,11 +354,6 @@ noremap <c-down>  <c-w>+
 noremap <c-up>    <c-w>-
 noremap <c-right> <c-w>>
 noremap <c-left>  <c-w><
-
-noremap <c-down>  <c-w>+
-noremap <c-up>    <c-w>-
-noremap <c-right> <c-w>>
-noremap <c-left>  <c-w><
 " navigate diagnostics
 nmap <silent> <pageup>   <Plug>(coc-diagnostic-prev)
 nmap <silent> <pagedown> <Plug>(coc-diagnostic-next)
@@ -360,6 +375,7 @@ tnoremap <c-x> <c-\><c-n>:quit<cr>
 """ settings
 colorscheme elflord
 imap jk <esc>
+set clipboard+=unnamedplus      " use the clipboard for all operations
 set timeoutlen=500              " wait time for maps with a shared prefix
 set completeopt-=preview        " don't show information about selected completion in preview window
 set completeopt+=menuone        " use popup menu even if there is only one match
