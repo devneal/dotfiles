@@ -124,7 +124,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Code/python
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /home/devneal/.local/bin/virtualenvwrapper.sh
-export TERMINAL="/usr/bin/alacritty"
 
 export DOMAIN="localhost"
 export FRONTEND_CONFIG_PATH="/etc/eulertour/frontend"
@@ -134,7 +133,7 @@ export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
 alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bashrc"
 alias i3c="vim ~/.config/i3/config"
-alias rgc="vim ~/.config/i3-regolith/config"
+alias rgc="vim ~/.config/regolith/i3/config"
 alias alc="vim ~/.config/alacritty/alacritty.yml"
 alias sbrc="source ~/.bashrc"
 alias color="alacritty-colorscheme -C ~/.config/alacritty/colorschemes"
