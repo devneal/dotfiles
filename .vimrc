@@ -202,104 +202,9 @@ call defx#custom#option('_', {
 " DEFX.NVIM END
 " ============================================================================
 
-" " ============================================================================
-" " DENITE.NVIM START
-" " ============================================================================
-" autocmd FileType denite call s:denite_my_settings()
-" function! s:denite_my_settings() abort
-"   nnoremap <silent><buffer><expr> i     denite#do_map('open_filter_buffer')
-"   nnoremap <silent><buffer><expr> q     denite#do_map('quit')
-"   nnoremap <silent><buffer><expr> d     denite#do_map('do_action', 'delete')
-"   nnoremap <silent><buffer><expr> p     denite#do_map('do_action', 'preview')
-"   nnoremap <silent><buffer><expr> <cr>  denite#do_map('do_action', 'open')
-"   nnoremap <silent><buffer><expr> <c-t> denite#do_map('do_action', 'tabopen')
-"   nnoremap <silent><buffer><expr> <c-v> denite#do_map('do_action', 'vsplit')
-"   nnoremap <silent><buffer><expr> <c-s> denite#do_map('do_action', 'split')
-" endfunction
-" 
-" " Use ripgrep for searching current directory for files
-" " By default, ripgrep will respect rules in .gitignore
-" "   --files: Print each file that would be searched (but don't search)
-" "   --glob:  Include or exclues files for searching that match the given glob
-" "            (aka ignore .git files)
-" call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-" 
-" " Use ripgrep in place of "grep"
-" call denite#custom#var('grep', 'command', ['rg'])
-" 
-" " Custom options for ripgrep
-" "   --vimgrep:  Show results with every match on it's own line
-" "   --hidden:   Search hidden directories and files
-" "   --heading:  Show the file name above clusters of matches from each file
-" "   --S:        Search case insensitively if the pattern is all lowercase
-" call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-" 
-" " Recommended defaults for ripgrep via Denite docs
-" call denite#custom#var('grep', 'recursive_opts', [])
-" call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-" call denite#custom#var('grep', 'separator', ['--'])
-" call denite#custom#var('grep', 'final_opts', [])
-" 
-" " Remove date from buffer list
-" call denite#custom#var('buffer', 'date_format', '')
-" 
-" call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-" call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-" 
-" " Custom options for Denite
-" "   auto_resize             - Auto resize the Denite window height automatically.
-" "   prompt                  - Customize denite prompt
-" "   direction               - Specify Denite window direction as directly below current pane
-" "   winminheight            - Specify min height for Denite window
-" "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-" "   prompt_highlight        - Specify color of prompt
-" "   highlight_matched_char  - Matched characters highlight
-" "   highlight_matched_range - matched range highlight
-" let s:denite_options = {'default' : {
-" \ 'auto_resize': 1,
-" \ 'prompt': 'λ:',
-" \ 'direction': 'rightbelow',
-" \ 'winminheight': '10',
-" \ 'highlight_mode_insert': 'Visual',
-" \ 'highlight_mode_normal': 'Visual',
-" \ 'prompt_highlight': 'Function',
-" \ 'highlight_matched_char': 'Function',
-" \ 'highlight_matched_range': 'Normal',
-" \ 'start_filter': 1
-" \ }}
-" 
-" " Loop through denite options and enable them
-" function! s:profile(opts) abort
-"   for l:fname in keys(a:opts)
-"     for l:dopt in keys(a:opts[l:fname])
-"       call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-"     endfor
-"   endfor
-" endfunction
-" 
-" call s:profile(s:denite_options)
-" " ============================================================================
-" " DENITE.NVIM END
-" " ============================================================================
-
 let g:startify_change_to_dir = 0
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsFlyMode = 0
-
-" let g:deoplete#enable_at_startup = 1
-" <TAB>: completion.
-" inoremap <expr><tab>  pumvisible() ? "\<C-n>" : "\<tab>"
-" inoremap <expr><s-tab>  pumvisible() ? "\<C-p>" : "\<tab>"
-
-" let g:mucomplete#enable_auto_at_startup = 1
-" let g:mucomplete#chains = {}
-" if !(has('python') || has('python3'))
-"   " define whatever completion chain you want, but without 'omni':
-"   let g:mucomplete#chains.python = ['path', 'keyn']
-" endif
-
-" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_python_flake8_options = '--ignore=F405,E501'
 
 let g:tagbar_sort = 0
 
@@ -347,6 +252,16 @@ autocmd filetype cpp nnoremap ,sd :let x=expand("%:t")<cr>:exe "split ".expand("
 autocmd filetype cpp nnoremap ,vd :let x=expand("%:t")<cr>:exe "vsplit ".expand("%:h")."/BUILD"<cr>gg/"<c-r>=x<cr>"<cr>/deps<cr>
 autocmd filetype cpp nnoremap ,td :let x=expand("%:t")<cr>:exe "tabedit ".expand("%:h")."/BUILD"<cr>gg/"<c-r>=x<cr>"<cr>/deps<cr>
 
+" split header, vsplit header, tab header
+autocmd filetype cpp nnoremap ,sh :exe "split ".expand("%:h")."/".expand("%:t")[:-3]."h"<cr>
+autocmd filetype cpp nnoremap ,vh :exe "vsplit ".expand("%:h")."/".expand("%:t")[:-3]."h"<cr>
+autocmd filetype cpp nnoremap ,th :exe "tabedit ".expand("%:h")."/".expand("%:t")[:-3]."h"<cr>
+
+" make terminal default mode insert (false positive on restore session)
+if has('nvim')
+    autocmd TermOpen term://* startinsert
+endif
+
 """ plugin leader mappings
 let mapleader=" "
 nnoremap <leader>b :TagbarOpenAutoClose<cr>
@@ -386,6 +301,7 @@ nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
 nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
 """ general leader mappings
+nmap <leader>vrc :edit ~/Code/dotfiles/.vimrc<cr>
 " copy filename to clipboard
 nmap <leader>cff :let @"=expand("%")<CR>     " copy file full
 nmap <leader>cfh :let @"=expand("%:h")<CR>   " copy file head
@@ -407,6 +323,11 @@ nnoremap <leader>, <c-o>
 " create panes
 nnoremap <leader>s :sp<cr>
 nnoremap <leader>v :vsp<cr>
+" create terminals
+nnoremap <leader>st  :sp<cr>:terminal<cr>
+nnoremap <leader>vt  :vsp<cr>:terminal<cr>
+nnoremap <leader>tt  :tabedit<cr>:terminal<cr>
+nnoremap <leader>tty :terminal<cr>
 " move tabs
 nnoremap <leader>n :tabmove -1<cr>
 nnoremap <leader>m :tabmove +1<cr>
@@ -430,6 +351,11 @@ noremap + <c-w>+
 noremap _ <c-w>-
 noremap ) <c-w>>
 noremap ( <c-w><
+
+noremap <c-down>  <c-w>+
+noremap <c-up>    <c-w>-
+noremap <c-right> <c-w>>
+noremap <c-left>  <c-w><
 " navigate diagnostics
 nmap <silent> <pageup>   <Plug>(coc-diagnostic-prev)
 nmap <silent> <pagedown> <Plug>(coc-diagnostic-next)
@@ -440,10 +366,19 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gw :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
+" tnoremap <esc> <c-\><c-n>
+tnoremap jk    <c-\><c-n>
+tnoremap <c-h> <c-\><c-n>:wincmd h<cr>
+tnoremap <c-j> <c-\><c-n>:wincmd j<cr>
+tnoremap <c-k> <c-\><c-n>:wincmd k<cr>
+tnoremap <c-l> <c-\><c-n>:wincmd l<cr>
+tnoremap <c-x> <c-\><c-n>:quit<cr>
 
 """ settings
 colorscheme elflord
 imap jk <esc>
+set clipboard+=unnamedplus      " use the clipboard for all operations
+set timeoutlen=500              " wait time for maps with a shared prefix
 set completeopt-=preview        " don't show information about selected completion in preview window
 set completeopt+=menuone        " use popup menu even if there is only one match
 set completeopt+=noselect       " don't select a match from the menu automatically
