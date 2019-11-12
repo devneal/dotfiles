@@ -118,7 +118,8 @@ fi
 
 xset r rate 190 55
 PS1="> "
-export EDITOR="vim"
+export EDITOR=" ~/.local/bin/nvim.appimage"
+export VISUAL=" ~/.local/bin/nvim.appimage"
 export PYTHONBREAKPOINT="ipdb.set_trace"
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Code/python
@@ -130,13 +131,13 @@ export FRONTEND_CONFIG_PATH="/etc/eulertour/frontend"
 export BACKEND_DATA_PATH="/srv/eulertour/backend"
 export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
 
-alias vrc="vim ~/.vimrc"
+alias vrc="vim ~/Code/dotfiles/.config/nvim/init.vim"
 alias brc="vim ~/.bashrc"
 alias i3c="vim ~/.config/i3/config"
 alias rgc="vim ~/.config/regolith/i3/config"
 alias alc="vim ~/.config/alacritty/alacritty.yml"
 alias sbrc="source ~/.bashrc"
-alias color="alacritty-colorscheme -C ~/.config/alacritty/colorschemes"
+alias color="alacritty-colorscheme -C ~/.config/alacritty/alacritty-theme/themes/"
 alias vim="~/.local/bin/nvim.appimage"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
