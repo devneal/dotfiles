@@ -1,16 +1,16 @@
 {
-	"list.insertMappings": {
-		"<C-t>": "action:tabe",
-		"<C-v>": "action:vsplit",
-		"<C-s>": "action:split",
-		"<C-w>": "command:wincmd k",
-        "<C-x>": "do:exit",
-        "<C-l>": "do:switch"
-	},
-	"list.normalMappings": {
-		"<C-t>": "action:tabe",
-        "<C-v>": "action:vsplit",
-        "<C-s>": "action:split",
-        "<C-x>": "do:exit"
-	}
+    "list.insertMappings": {
+        "<c-t>": "action:tabe",
+        "<c-v>": "action:vsplit",
+        "<c-s>": "action:split",
+        "<c-w>": "command:wincmd k",
+        "<c-x>": "do:exit",
+        "<c-l>": "do:switch"
+    },
+    "list.normalMappings": {
+        "<c-t>": "action:tabe",
+        "<c-v>": "action:vsplit",
+        "<c-s>": "action:split",
+        "<c-x>": "do:exit"
+    }
 }

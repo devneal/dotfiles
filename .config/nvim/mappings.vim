@@ -62,3 +62,9 @@ tnoremap <c-j> <c-\><c-n>:wincmd j<cr>
 tnoremap <c-k> <c-\><c-n>:wincmd k<cr>
 tnoremap <c-l> <c-\><c-n>:wincmd l<cr>
 tnoremap <c-x> <c-\><c-n>:quit<cr>
+
+" Center search results
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
