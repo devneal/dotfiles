@@ -1,3 +1,6 @@
+autocmd BufRead,BufNewFile *.htm,*.html,*.vue,*.js setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufEnter * :syntax sync fromstart
+
 """ settings
 colorscheme elflord
 imap jk <esc>
