@@ -1,6 +1,6 @@
 """ leader mappings
 let mapleader=" "
-nmap <leader>vrc :edit ~/.config/nvim/init.vim<cr>
+nmap <leader>vrc :edit ~/Code/dotfiles/.config/nvim/init.vim<cr>
 
 nnoremap <leader>o :tabedit<space>
 nnoremap <leader>e :edit<space>

@@ -22,16 +22,15 @@ call denite#custom#option('default', { 'prompt': '❯' })
 
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
   imap <silent><buffer> <esc> <Plug>(denite_filter_quit)
-  inoremap <silent><buffer> <C-j>
-    \ <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
-  inoremap <silent><buffer> <C-k>
-    \ <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
-  inoremap <silent><buffer> <C-t> <Plug>(denite_filter_quit)<c-t>
-  inoremap <silent><buffer> <C-s> <Plug>(denite_filter_quit)<c-s>
-  inoremap <silent><buffer> <C-v> <Plug>(denite_filter_quit)<c-v>
-  inoremap <silent><buffer> <cr> <Plug>(denite_filter_quit)<cr>
+  imap <silent><buffer> <c-o> <Plug>(denite_filter_quit)
+  imap <silent><buffer> <c-t> <Plug>(denite_filter_quit)<c-t>
+  imap <silent><buffer> <c-v> <Plug>(denite_filter_quit)<c-v>
+  imap <silent><buffer> <c-s> <Plug>(denite_filter_quit)<c-s>
+  inoremap <silent><buffer> <c-j>
+  \ <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
+  inoremap <silent><buffer> <c-k>
+  \ <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
 endfunction
 
 " Change file/rec command to ripgrep
