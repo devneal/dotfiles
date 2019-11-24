@@ -16,6 +16,8 @@ function! s:denite_my_settings() abort
   \ denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> <space>
   \ denite#do_map('toggle_select').'j'
+  nnoremap <silent><buffer><expr> <esc>
+  \ denite#do_map('quit')
 endfunction
 
 call denite#custom#option('default', { 'prompt': '❯' })
@@ -23,6 +25,7 @@ call denite#custom#option('default', { 'prompt': '❯' })
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <esc> <Plug>(denite_filter_quit)
+  imap <silent><buffer> <cr> <Plug>(denite_filter_quit)<cr>
   imap <silent><buffer> <c-o> <Plug>(denite_filter_quit)
   imap <silent><buffer> <c-t> <Plug>(denite_filter_quit)<c-t>
   imap <silent><buffer> <c-v> <Plug>(denite_filter_quit)<c-v>

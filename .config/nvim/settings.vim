@@ -2,8 +2,9 @@ autocmd BufRead,BufNewFile *.htm,*.html,*.vue,*.js setlocal tabstop=2 shiftwidth
 autocmd BufEnter * :syntax sync fromstart
 
 """ settings
+highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
+syntax enable
 colorscheme elflord
-imap jk <esc>
 set clipboard+=unnamedplus      " use the clipboard for all operations
 set timeoutlen=500              " wait time for maps with a shared prefix
 set completeopt-=preview        " don't show information about selected completion in preview window
@@ -34,5 +35,25 @@ set relativenumber              " display line numbers relative to cursor
 set encoding=UTF-8              " allow for devicons
 set guicursor=                  " disable cursor styling
 set nomodeline                  " disable modelines
-syntax enable
-highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
+set exrc                        " allow for project-specific configuration files
+set secure                      " disallow :autocmd, shell, and write commands in local .nvimrc
+
+" COC
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes

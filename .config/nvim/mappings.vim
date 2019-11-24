@@ -1,5 +1,6 @@
 """ leader mappings
 let mapleader=" "
+imap jk <esc>
 nmap <leader>vrc :edit ~/Code/dotfiles/.config/nvim/init.vim<cr>
 
 nnoremap <leader>o :tabedit<space>
@@ -21,10 +22,6 @@ nnoremap <leader>v :vsp<cr>
 " move tabs
 nnoremap <leader>n :tabmove -1<cr>
 nnoremap <leader>m :tabmove +1<cr>
-
-" plugins
-nnoremap <leader>z :Denite -start-filter file/rec<cr>
-nnoremap <leader>r :Denite -start-filter grep<cr>
 
 """ general mappings
 " navigate tabs
@@ -68,3 +65,33 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
 nnoremap # #zz
+
+" plugins
+""" Denite
+nnoremap <leader>z :Denite -start-filter file/rec<cr>
+nnoremap <leader>r :Denite -start-filter grep<cr>
+
+""" coc.nvim
+" use <tab> and <s-tab> to navigate the completion list
+inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+" use <cr> to confirm completion
+inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> <pageup> <Plug>(coc-diagnostic-prev)
+nmap <silent> <pagedown> <Plug>(coc-diagnostic-next)
