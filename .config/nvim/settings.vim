@@ -15,6 +15,8 @@ set tabstop=4                   " number of spaces that a <tab> in the file coun
 set shiftwidth=4                " number of spaces to use for autoindent ('cindent', >>, <<, etc.)
 set softtabstop=4               " number of spaces that a <tab> counts for while performing editing operations, like inserting a <tab> or using <bs>
 set expandtab                   " use the appropriate number of spaces to insert a <tab> in insert mode
+set autoindent                  " copy indent from current line when starting a new line
+" set smartindent                 " perform smart indenting for c-like programs
 set backspace=indent,eol,start  " allow backspacing over everything
 set splitright                  " vertical splits open to the right
 set splitbelow                  " horizontal splits open on the bottom
