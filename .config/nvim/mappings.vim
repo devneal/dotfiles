@@ -67,11 +67,10 @@ nnoremap * *zz
 nnoremap # #zz
 
 " plugins
-""" Denite
-nnoremap <leader>z :Denite -start-filter file/rec<cr>
-nnoremap <leader>r :Denite -start-filter grep<cr>
-
 """ coc.nvim
+nnoremap <leader>z :CocList files<cr>
+nnoremap <leader>r :CocList grep<cr>
+
 " use <tab> and <s-tab> to navigate the completion list
 inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
