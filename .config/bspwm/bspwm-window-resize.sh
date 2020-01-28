@@ -1,16 +1,9 @@
 #!/usr/bin/dash
 
-# Find a way to resize bspwm using one set of hjkl keys
-# (e.g. super+alt+{hjkl})
+# Resize bspwm windows using a single binding over the hjkl keys, e.g.
+# super+alt+{hjkl}
 #
-# There is an old script for doing this at https://github.com/noctuid/dotfiles#consolidate-bspwm-resizing-keybindings,
-# but it is written rather badly.
-#
-# Roughly, to expand a window in a direction (while tiled):
-# If there is no border to the left/bottom:
-#     expand in that direction
-# else:
-#     expand in the opposite direction
+# Usage: bspwm-window-resize.sh expand|contract vertical|horizontal difference
 
 action=$1
 axis=$2
@@ -18,24 +11,24 @@ difference=$3
 
 # Ensure valid arguments.
 if [ "$action" != "expand" ] && [ "$action" != "contract" ]; then
-    notify-send "Invalid action $action"
+    >&2 echo "Invalid action $action"
     exit 1
 fi
 
 if [ "$axis" != "horizontal" ] && [ "$axis" != "vertical" ]; then
-    notify-send "Invalid axis $axis"
+    >&2 echo "Invalid axis $axis"
     exit 1
 fi
 
 match=$(expr match "$difference" "[[:digit:]][[:digit:]]*")
 if [ "$match" = "0" ]; then
-    notify-send "Invalid difference $difference"
+    >&2 echo "Invalid difference $difference"
     exit 1
 fi
 
 if [ "$action" = "contract" ]; then
     if [ "$axis" = "horizontal" ]; then
-        if [ -z "$(bspc query --nodes --node focused\#east)" ]; then
+        if [ -z "$(bspc query --nodes --node east.local)" ]; then
             handle="left"
             sign="+"
         else
@@ -43,7 +36,7 @@ if [ "$action" = "contract" ]; then
             sign="-"
         fi
     else
-        if [ -z "$(bspc query --nodes --node focused\#south)" ]; then
+        if [ -z "$(bspc query --nodes --node south.local)" ]; then
             handle="top"
             sign="+"
         else
@@ -53,7 +46,7 @@ if [ "$action" = "contract" ]; then
     fi
 else
     if [ "$axis" = "horizontal" ]; then
-        if [ -z "$(bspc query --nodes --node focused\#east)" ]; then
+        if [ -z "$(bspc query --nodes --node east.local)" ]; then
             handle="left"
             sign="-"
         else
@@ -61,7 +54,7 @@ else
             sign="+"
         fi
     else
-        if [ -z "$(bspc query --nodes --node focused\#south)" ]; then
+        if [ -z "$(bspc query --nodes --node south.local)" ]; then
             handle="top"
             sign="-"
         else

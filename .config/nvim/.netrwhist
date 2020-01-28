@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/devneal/github/dotfiles/.config/alacritty'
+let g:netrw_dirhist_3='/home/devneal/github/dotfiles/.config'
+let g:netrw_dirhist_2='/home/devneal/github/dotfiles'
+let g:netrw_dirhist_1='/home/devneal/.oh-my-zsh/custom'
