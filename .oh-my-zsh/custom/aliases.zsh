@@ -1,10 +1,13 @@
 alias \
+    sudo='sudo ' \
     vim='nvim' \
     view='nvim -R' \
-    zrc='nvim $HOME/.zshrc' \
     szrc='. ~/.zshrc' \
-    alc='nvim $XDG_CONFIG_HOME/alacritty/alacritty.yml' \
+    zrc='nvim $HOME/.zshrc' \
     vrc='nvim $XDG_CONFIG_HOME/nvim/init.vim' \
+    alc='nvim $XDG_CONFIG_HOME/alacritty/alacritty.yml' \
+    pbc='nvim $XDG_CONFIG_HOME/polybar/config' \
+    rfc='nvim $XDG_CONFIG_HOME/rofi/config.rasi' \
     t='tmux' \
     tn='tmux new -s' \
     tls='tmux ls' \

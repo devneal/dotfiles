@@ -1,7 +1,7 @@
-#!/usr/bin/dash
+#!/bin/sh
 
-# Resize bspwm windows using a single binding over the hjkl keys, e.g.
-# super+alt+{hjkl}
+# Allows resizing bspwm windows using a single binding over the hjkl keys, e.g.
+# super+alt+{hjkl}.
 #
 # Usage: bspwm-window-resize.sh expand|contract vertical|horizontal difference
 
@@ -20,7 +20,7 @@ if [ "$axis" != "horizontal" ] && [ "$axis" != "vertical" ]; then
     exit 1
 fi
 
-match=$(expr match "$difference" "[[:digit:]][[:digit:]]*")
+match=$(expr "$difference" : "[[:digit:]][[:digit:]]*")
 if [ "$match" = "0" ]; then
     >&2 echo "Invalid difference $difference"
     exit 1
@@ -72,4 +72,4 @@ else
     dy="$sign$difference"
 fi
 
-bspc node -z $handle $dx $dy
+bspc node -z "$handle" "$dx" "$dy"
