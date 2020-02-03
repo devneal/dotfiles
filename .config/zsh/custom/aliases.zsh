@@ -8,9 +8,15 @@ alias \
     alc='nvim $XDG_CONFIG_HOME/alacritty/alacritty.yml' \
     pbc='nvim $XDG_CONFIG_HOME/polybar/config' \
     rfc='nvim $XDG_CONFIG_HOME/rofi/config.rasi' \
+    sxc='nvim $XDG_CONFIG_HOME/sxhkd/sxhkdrc' \
+    bsc='nvim $XDG_CONFIG_HOME/bspwm/bspwmrc' \
+    txc='nvim $XDG_CONFIG_HOME/tmux/tmux.conf' \
+    tmux='tmux -f $XDG_CONFIG_HOME/tmux.conf' \
     t='tmux' \
-    tn='tmux new -s' \
     tls='tmux ls' \
+    tn='tmux new' \
+    tns='tmux new -s' \
     ta='tmux a' \
     tat='tmux a -t' \
-    dots='cd $HOME/github/dotfiles'
+    dots='cd $HOME/github/dotfiles' \
+    fonts='cd $HOME/.local/share/fonts'

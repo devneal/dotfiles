@@ -1,50 +1,50 @@
 font:
   normal:
-    family: "Space Mono for Powerline"
-  size: 17
+    family: "SauceCodePro Nerd Font Mono"
+  size: 19
 mouse:
   url:
     launcher:
       program: google-chrome-stable
       args: []
     modifiers: Control
-background_opacity: 0.7
+background_opacity: 0.725
 
 # %%base16_template: alacritty##default %%
-# Base16 Google Dark - alacritty color config
-# Seth Wright (http://sethawright.com)
+# Base16 Atlas - alacritty color config
+# Alex Lende (https://ajlende.com)
 colors:
   # Default colors
   primary:
-    background: '0x1d1f21'
-    foreground: '0xc5c8c6'
+    background: '0x002635'
+    foreground: '0xa1a19a'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x1d1f21'
-    cursor: '0xc5c8c6'
+    text: '0x002635'
+    cursor: '0xa1a19a'
 
   # Normal colors
   normal:
-    black:   '0x1d1f21'
-    red:     '0xCC342B'
-    green:   '0x198844'
-    yellow:  '0xFBA922'
-    blue:    '0x3971ED'
-    magenta: '0xA36AC7'
-    cyan:    '0x3971ED'
-    white:   '0xc5c8c6'
+    black:   '0x002635'
+    red:     '0xff5a67'
+    green:   '0x7fc06e'
+    yellow:  '0xffcc1b'
+    blue:    '0x5dd7b9'
+    magenta: '0x9a70a4'
+    cyan:    '0x14747e'
+    white:   '0xa1a19a'
 
   # Bright colors
   bright:
-    black:   '0x969896'
-    red:     '0xF96A38'
-    green:   '0x282a2e'
-    yellow:  '0x373b41'
-    blue:    '0xb4b7b4'
-    magenta: '0xe0e0e0'
-    cyan:    '0x3971ED'
-    white:   '0xffffff'
+    black:   '0x6C8B91'
+    red:     '0xf08e48'
+    green:   '0x00384d'
+    yellow:  '0x517F8D'
+    blue:    '0x869696'
+    magenta: '0xe6e6dc'
+    cyan:    '0xc43060'
+    white:   '0xfafaf8'
 
 draw_bold_text_with_bright_colors: false
 

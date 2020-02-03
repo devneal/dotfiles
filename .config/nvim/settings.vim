@@ -4,7 +4,7 @@ autocmd BufEnter * :syntax sync fromstart
 """ settings
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 syntax enable
-colorscheme pablo
+colorscheme default
 set clipboard+=unnamedplus      " use the clipboard for all operations
 set timeoutlen=500              " wait time for maps with a shared prefix
 set completeopt-=preview        " don't show information about selected completion in preview window
