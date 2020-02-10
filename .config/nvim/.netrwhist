@@ -1,4 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/devneal/github/eulerv2/dev/pyodide/pyodide_build'
+let g:netrw_dirhist_3='/home/devneal/github/manim/manimlib'
 let g:netrw_dirhist_2='/etc/X11/xorg.conf.d'
 let g:netrw_dirhist_1='/home/devneal/github/base16-builder-python/schemes'

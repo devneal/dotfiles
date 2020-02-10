@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/devneal/.oh-my-zsh"
@@ -79,8 +80,9 @@ globalias_ignore=(ls grep)
 # Aliases are set in $ZSH_CUSTOM/aliases.zsh
 
 export EDITOR=/usr/bin/nvim
-export DOTS="$HOME/github/dotfiles"
-export FONTS="$HOME/.local/share/fonts"
+export DOTFILES="$HOME/github/dotfiles"
+export FONTS="$XDG_DATA_HOME/fonts"
+export SCREENSHOTS="$XDG_DATA_HOME/screenshots"
 if [[ ":$PATH:" != *"$HOME/.local/bin"* ]] then
     export PATH="$HOME/.local/bin:${PATH}"
 fi

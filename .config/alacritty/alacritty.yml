@@ -8,43 +8,43 @@ mouse:
       program: google-chrome-stable
       args: []
     modifiers: Control
-background_opacity: 0.725
+background_opacity: 0.8
 
 # %%base16_template: alacritty##default %%
-# Base16 Atlas - alacritty color config
-# Alex Lende (https://ajlende.com)
+# Base16 Gigavolt - alacritty color config
+# Aidan Swope (http://github.com/Whillikers)
 colors:
   # Default colors
   primary:
-    background: '0x002635'
-    foreground: '0xa1a19a'
+    background: '0x202126'
+    foreground: '0xe9e7e1'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x002635'
-    cursor: '0xa1a19a'
+    text: '0x202126'
+    cursor: '0xe9e7e1'
 
   # Normal colors
   normal:
-    black:   '0x002635'
-    red:     '0xff5a67'
-    green:   '0x7fc06e'
-    yellow:  '0xffcc1b'
-    blue:    '0x5dd7b9'
-    magenta: '0x9a70a4'
-    cyan:    '0x14747e'
-    white:   '0xa1a19a'
+    black:   '0x202126'
+    red:     '0xff661a'
+    green:   '0xf2e6a9'
+    yellow:  '0xffdc2d'
+    blue:    '0x40bfff'
+    magenta: '0xae94f9'
+    cyan:    '0xfb6acb'
+    white:   '0xe9e7e1'
 
   # Bright colors
   bright:
-    black:   '0x6C8B91'
-    red:     '0xf08e48'
-    green:   '0x00384d'
-    yellow:  '0x517F8D'
-    blue:    '0x869696'
-    magenta: '0xe6e6dc'
-    cyan:    '0xc43060'
-    white:   '0xfafaf8'
+    black:   '0xa1d2e6'
+    red:     '0x19f988'
+    green:   '0x2d303d'
+    yellow:  '0x5a576e'
+    blue:    '0xcad3ff'
+    magenta: '0xeff0f9'
+    cyan:    '0x6187ff'
+    white:   '0xf2fbff'
 
 draw_bold_text_with_bright_colors: false
 

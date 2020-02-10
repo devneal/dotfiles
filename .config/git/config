@@ -1,0 +1,7 @@
+[user]
+	email = devin@eulertour.com
+	name = Devin Neal
+[core]
+	pager = less -X -F
+[alias]
+	lol = !gitlol.sh
