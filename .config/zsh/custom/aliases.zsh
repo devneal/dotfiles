@@ -22,4 +22,7 @@ alias \
     fonts='cd $FONTS' \
     screenshots='cd $SCREENSHOTS' \
     elr='cd $HOME/github/eulerv2' \
-    mnm='cd $HOME/github/manim'
+    mnm='cd $HOME/github/manim' \
+    gcloud='docker run --rm --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/cloud-sdk gcloud' \
+    bq='docker run --rm --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/cloud-sdk bq' \
+    gsutil='docker run --rm --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/cloud-sdk gsutil'

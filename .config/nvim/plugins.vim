@@ -6,4 +6,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 
+Plug 'honza/vim-snippets'
+Plug 'sdras/vue-vscode-snippets'
+
 call plug#end()

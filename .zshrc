@@ -75,7 +75,7 @@ plugins=(git globalias_ignore)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-globalias_ignore=(ls grep)
+globalias_ignore=(ls grep gcloud gsutil bq)
 
 # Aliases are set in $ZSH_CUSTOM/aliases.zsh
 
@@ -89,3 +89,23 @@ fi
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+xset r rate 200 60
+
+gcloud-shell() {
+    docker run --rm \
+               --volumes-from gcloud-config \
+               -ti \
+               -v $(pwd):/project \
+               -w /project \
+               gcr.io/google.com/cloudsdktool/cloud-sdk
+}
+
+gcloud-app-deploy() {
+    docker run --rm \
+               --volumes-from gcloud-config \
+               -ti \
+               -v $(pwd):/project \
+               -w /project \
+               gcr.io/google.com/cloudsdktool/cloud-sdk \
+               gcloud app deploy
+}

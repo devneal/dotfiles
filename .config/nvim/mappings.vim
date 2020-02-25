@@ -1,7 +1,7 @@
 """ leader mappings
 let mapleader=" "
 imap jk <esc>
-nmap <leader>vrc :edit ~/Code/dotfiles/.config/nvim/init.vim<cr>
+nmap <leader>vrc :edit $MYVIMRC<cr>
 
 nnoremap <leader>o :tabedit<space>
 nnoremap <leader>e :edit<space>
@@ -37,6 +37,7 @@ nnoremap <c-l> :wincmd l<cr>
 " scroll panes
 noremap <c-y> 2zh
 noremap <c-u> <c-e>j
+" This conflicts with <tab>, search #tab-hack
 noremap <c-i> <c-y>k
 noremap <c-o> 2zl
 
@@ -71,8 +72,9 @@ nnoremap # #zz
 nnoremap <leader>z :CocList files<cr>
 nnoremap <leader>r :CocList grep<cr>
 
+" This conflicts with <c-i>, search #tab-hack
 " use <tab> and <s-tab> to navigate the completion list
-inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<c-y>k"
 inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " use <cr> to confirm completion

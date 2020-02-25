@@ -8,43 +8,43 @@ mouse:
       program: google-chrome-stable
       args: []
     modifiers: Control
-background_opacity: 0.8
+background_opacity: 1
 
 # %%base16_template: alacritty##default %%
-# Base16 Gigavolt - alacritty color config
-# Aidan Swope (http://github.com/Whillikers)
+# Base16 Ocean - alacritty color config
+# Chris Kempson (http://chriskempson.com)
 colors:
   # Default colors
   primary:
-    background: '0x202126'
-    foreground: '0xe9e7e1'
+    background: '0x2b303b'
+    foreground: '0xc0c5ce'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x202126'
-    cursor: '0xe9e7e1'
+    text: '0x2b303b'
+    cursor: '0xc0c5ce'
 
   # Normal colors
   normal:
-    black:   '0x202126'
-    red:     '0xff661a'
-    green:   '0xf2e6a9'
-    yellow:  '0xffdc2d'
-    blue:    '0x40bfff'
-    magenta: '0xae94f9'
-    cyan:    '0xfb6acb'
-    white:   '0xe9e7e1'
+    black:   '0x2b303b'
+    red:     '0xbf616a'
+    green:   '0xa3be8c'
+    yellow:  '0xebcb8b'
+    blue:    '0x8fa1b3'
+    magenta: '0xb48ead'
+    cyan:    '0x96b5b4'
+    white:   '0xc0c5ce'
 
   # Bright colors
   bright:
-    black:   '0xa1d2e6'
-    red:     '0x19f988'
-    green:   '0x2d303d'
-    yellow:  '0x5a576e'
-    blue:    '0xcad3ff'
-    magenta: '0xeff0f9'
-    cyan:    '0x6187ff'
-    white:   '0xf2fbff'
+    black:   '0x65737e'
+    red:     '0xd08770'
+    green:   '0x343d46'
+    yellow:  '0x4f5b66'
+    blue:    '0xa7adba'
+    magenta: '0xdfe1e8'
+    cyan:    '0xab7967'
+    white:   '0xeff1f5'
 
 draw_bold_text_with_bright_colors: false
 
