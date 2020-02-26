@@ -86,6 +86,7 @@ export SCREENSHOTS="$XDG_DATA_HOME/screenshots"
 if [[ ":$PATH:" != *"$HOME/.local/bin"* ]] then
     export PATH="$HOME/.local/bin:${PATH}"
 fi
+export PATH="$PATH:$(yarn global bin)"
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
