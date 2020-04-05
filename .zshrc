@@ -110,3 +110,5 @@ gcloud-app-deploy() {
                gcr.io/google.com/cloudsdktool/cloud-sdk \
                gcloud app deploy
 }
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

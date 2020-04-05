@@ -146,21 +146,21 @@ configuration {
 
 //# %%base16_template: rofi##default %%
 /**
- * Base16 Ocean ROFI Color theme
+ * Base16 Atlas ROFI Color theme
  *
  * Authors
- *  Scheme: Chris Kempson (http://chriskempson.com)
+ *  Scheme: Alex Lende (https://ajlende.com)
  *  Template: Jordi Pakey-Rodriguez (https://github.com/0xdec), Andrea Scarpino (https://github.com/ilpianista)
  */
 
 * {
-    red:                         rgba ( 191, 97, 106, 100 % );
-    blue:                        rgba ( 143, 161, 179, 100 % );
-    lightfg:                     rgba ( 223, 225, 232, 100 % );
-    lightbg:                     rgba ( 52, 61, 70, 100 % );
-    foreground:                  rgba ( 192, 197, 206, 100 % );
-    background:                  rgba ( 43, 48, 59, 100 % );
-    background-color:            rgba ( 43, 48, 59, 0 % );
+    red:                         rgba ( 255, 90, 103, 100 % );
+    blue:                        rgba ( 93, 215, 185, 100 % );
+    lightfg:                     rgba ( 230, 230, 220, 100 % );
+    lightbg:                     rgba ( 0, 56, 77, 100 % );
+    foreground:                  rgba ( 161, 161, 154, 100 % );
+    background:                  rgba ( 0, 38, 53, 100 % );
+    background-color:            rgba ( 0, 38, 53, 0 % );
     separatorcolor:              @foreground;
     border-color:                @foreground;
     selected-normal-foreground:  @lightbg;

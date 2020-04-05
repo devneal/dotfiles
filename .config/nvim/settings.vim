@@ -1,5 +1,7 @@
 autocmd BufRead,BufNewFile *.htm,*.html,*.vue,*.js setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufEnter * :syntax sync fromstart
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
 
 """ settings
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
