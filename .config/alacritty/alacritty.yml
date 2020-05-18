@@ -1,7 +1,7 @@
-font:
-  normal:
-    family: "SauceCodePro Nerd Font Mono"
-  size: 16
+#font:
+#  normal:
+#    family: "SauceCodePro Nerd Font Mono"
+#  size: 16
 mouse:
   url:
     launcher:
