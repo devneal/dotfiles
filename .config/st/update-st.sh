@@ -19,4 +19,3 @@ fi
 
 printf "Cleaning source directory...\n"
 make clean
-rm config.h
