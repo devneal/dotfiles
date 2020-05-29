@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	alacritty --live-config-reload
+	st
 
 # program launcher
 super + d
@@ -106,7 +106,7 @@ super + ctrl + shift + space
 
 # i3-ish window resizing
 super + alt + {h,j,k,l}
-    $XDG_CONFIG_HOME/bspwm/bspwm-window-resize.sh { \
+    bspwm-window-resize.sh { \
         contract horizontal 20, \
         expand vertical 20, \
         contract vertical 20, \
@@ -118,13 +118,12 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # rotate a node
-super + r
-    bspc node -R 90
+super + {shift,_} r
+    bspwm-rotate-parent.sh {270,90}
 
 # expand/contract gaps
 super + alt + {n,m}
-    $XDG_CONFIG_HOME/bspwm/bspwm-gaps-resize.sh {contract,expand} 10
+    bspwm-gaps-resize.sh {contract,expand} 8
 
-super + c
-    rofi -modi "color picker":$XDG_CONFIG_HOME/rofi/color-picker.sh \
-        -show "color picker"
+Print
+    maim -s /home/devneal/pictures/printscreen.png

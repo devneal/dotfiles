@@ -1,7 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/devneal/.oh-my-zsh"
@@ -63,7 +61,7 @@ ZSH_THEME="robbyrussell"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh/custom"
+ZSH_CUSTOM="$HOME/.config/zsh/custom"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -86,29 +84,29 @@ export SCREENSHOTS="$XDG_DATA_HOME/screenshots"
 if [[ ":$PATH:" != *"$HOME/.local/bin"* ]] then
     export PATH="$HOME/.local/bin:${PATH}"
 fi
-export PATH="$PATH:$(yarn global bin)"
 
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-xset r rate 200 60
-
-gcloud-shell() {
-    docker run --rm \
-               --volumes-from gcloud-config \
-               -ti \
-               -v $(pwd):/project \
-               -w /project \
-               gcr.io/google.com/cloudsdktool/cloud-sdk
+source_if_exists () {
+  [[ -f "$1" ]] && source "$1"
 }
 
-gcloud-app-deploy() {
-    docker run --rm \
-               --volumes-from gcloud-config \
-               -ti \
-               -v $(pwd):/project \
-               -w /project \
-               gcr.io/google.com/cloudsdktool/cloud-sdk \
-               gcloud app deploy
+# https://superuser.com/a/39995
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
 }
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+config() {
+    cd "$HOME/.config/$1"
+}
+
+pathadd ~/.config/bspwm
+pathadd ~/.config/st
+source_if_exists /usr/share/fzf/key-bindings.zsh
+source_if_exists /usr/share/fzf/completion.zsh
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+source "$HOME/.local/bin/virtualenvwrapper.sh"
+
+# Return 0.
+true

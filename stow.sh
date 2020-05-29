@@ -3,4 +3,4 @@
 stow --ignore='.^git$' \
      --ignore='^README.md$' \
      --ignore='^stow.sh$' \
-     -d . -t ~ -S .
+     -d . -t ~--stow .

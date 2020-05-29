@@ -1,7 +1,6 @@
 """ leader mappings
 let mapleader=" "
 imap jk <esc>
-nmap <leader>vrc :edit $MYVIMRC<cr>
 
 nnoremap <leader>o :tabedit<space>
 nnoremap <leader>e :edit<space>
@@ -47,20 +46,6 @@ noremap _ <c-w>-
 noremap ) <c-w>>
 noremap ( <c-w><
 
-" create terminals
-nnoremap <leader>st  :sp<cr>:terminal<cr>
-nnoremap <leader>vt  :vsp<cr>:terminal<cr>
-nnoremap <leader>tt  :tabedit<cr>:terminal<cr>
-nnoremap <leader>tty :terminal<cr>
-
-" tnoremap <esc> <c-\><c-n>
-tnoremap jk    <c-\><c-n>
-tnoremap <c-h> <c-\><c-n>:wincmd h<cr>
-tnoremap <c-j> <c-\><c-n>:wincmd j<cr>
-tnoremap <c-k> <c-\><c-n>:wincmd k<cr>
-tnoremap <c-l> <c-\><c-n>:wincmd l<cr>
-tnoremap <c-x> <c-\><c-n>:quit<cr>
-
 " Center search results
 nnoremap n nzz
 nnoremap N Nzz
@@ -85,6 +70,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gvrc :edit $MYVIMRC<cr>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -93,6 +79,9 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-" Use `[g` and `]g` to navigate diagnostics
+" Use PageUp and PageDown to navigate diagnostics
 nmap <silent> <pageup> <Plug>(coc-diagnostic-prev)
 nmap <silent> <pagedown> <Plug>(coc-diagnostic-next)
+
+""" vista.vim
+nnoremap <silent> ]] :Vista!!<cr>

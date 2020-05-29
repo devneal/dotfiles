@@ -29,8 +29,8 @@ alert = #bd2c40
 
 
 [bar/default]
-width = 98.4%
-offset-x = 0.8%
+width = 97.6%
+offset-x = 1.2%
 height = ${xrdb:polybar.height:45}
 offset-y = 0
 radius = 6.0

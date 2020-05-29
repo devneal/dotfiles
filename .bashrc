@@ -116,7 +116,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-xset r rate 190 55
+
+# https://superuser.com/a/39995
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
 PS1="> "
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -126,13 +133,18 @@ export PROJECT_HOME=$HOME/Code/python
 # export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 # source /home/devneal/.local/bin/virtualenvwrapper.sh
 
+# Source bspwm scripts.
+pathadd ~/.config/bspwm
+
 alias vim="nvim"
 alias vrc="nvim ~/Code/dotfiles/.config/nvim/init.vim"
 alias brc="nvim ~/.bashrc"
 alias i3c="nvim ~/.config/i3/config"
 alias rgc="nvim ~/.config/regolith/i3/config"
 alias alc="nvim ~/.config/alacritty/alacritty.yml"
+alias sxc="nvim ~/.config/sxhkd/sxhkdrc"
+alias pbc="nvim ~/.config/polybar/config"
 alias sbrc="source ~/.bashrc"
-alias tmux="tmux -f ~/.config/tmux.conf"
+alias tmux="tmux -f ~/.config/tmux/tmux.conf"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

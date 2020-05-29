@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# Allows resizing bspwm gaps using a single binding over the nm keys, e.g.
-# super+alt+{nm}.
+# Allows resizing bspwm gaps via hotkeys.
 #
 # Usage: bspwm-gaps-resize.sh expand|contract difference
 

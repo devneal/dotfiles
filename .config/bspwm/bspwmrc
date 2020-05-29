@@ -1,15 +1,12 @@
 #! /bin/sh
 
-sxhkd &
-$XDG_CONFIG_HOME/polybar/launch.sh default
-picom -b
-$HOME/.fehbg &
+polybar -r default &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 bspc config top_padding         $(xgetres polybar.height)
-bspc config border_width         4
-bspc config window_gap          30
+bspc config border_width        4
+bspc config window_gap          48
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true

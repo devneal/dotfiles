@@ -1,14 +1,14 @@
-#font:
-#  normal:
-#    family: "SauceCodePro Nerd Font Mono"
-#  size: 16
+font:
+  normal:
+    family: "FiraMono Nerd Font"
+  size: 18
 mouse:
   url:
     launcher:
       program: google-chrome-stable
       args: []
     modifiers: Control
-background_opacity: 1
+background_opacity: 0.8
 key_bindings:
   - { key: J, mods: Shift|Control, mode: ~Alt, action: ScrollLineDown }
   - { key: K, mods: Shift|Control, mode: ~Alt, action: ScrollLineUp,  }
