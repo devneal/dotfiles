@@ -1,16 +1,29 @@
 {
-    "list.insertMappings": {
-        "<c-t>": "action:tabe",
-        "<c-v>": "action:vsplit",
-        "<c-s>": "action:split",
-        "<c-w>": "command:wincmd k",
-        "<c-x>": "do:exit",
-        "<c-l>": "do:switch"
-    },
-    "list.normalMappings": {
-        "<c-t>": "action:tabe",
-        "<c-v>": "action:vsplit",
-        "<c-s>": "action:split",
-        "<c-x>": "do:exit"
-    }
+  "list.insertMappings": {
+    "<c-t>": "action:tabe",
+    "<c-v>": "action:vsplit",
+    "<c-s>": "action:split",
+    "<c-l>": "do:toggleMode",
+    "<c-x>": "do:exit"
+  },
+  "list.normalMappings": {
+    "<c-t>": "action:tabe",
+    "<c-v>": "action:vsplit",
+    "<c-s>": "action:split",
+    "<c-l>": "do:toggleMode",
+    "<c-x>": "do:exit"
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "json",
+    "javascript",
+    "markdown",
+    "python",
+    "typescriptreact",
+    "vue"
+  ],
+  "eslint.packageManager": "yarn",
+  "eslint.filetypes": ["vue"],
+  "python.formatting.provider": "black",
+  "python.venvFolders": [".cache/pypoetry/virtualenvs"]
 }

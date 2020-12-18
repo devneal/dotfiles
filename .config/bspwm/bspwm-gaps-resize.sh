@@ -19,12 +19,12 @@ if [ "$match" = "0" ]; then
     exit 1
 fi
 
-current_gap_size=$(bspc config window_gap)
+current_gap_size=$(bspc config -d focused window_gap)
 if [ "$action" = "expand" ]; then
-    bspc config window_gap $((current_gap_size + difference))
+    bspc config -d focused window_gap $((current_gap_size + difference))
 else
     new_gap_size=$((current_gap_size - difference))
     if [ $new_gap_size -ge 0 ]; then
-        bspc config window_gap $new_gap_size
+        bspc config -d focused window_gap $new_gap_size
     fi
 fi

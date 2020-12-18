@@ -2,6 +2,7 @@
 let mapleader=" "
 imap jk <esc>
 
+nnoremap <leader><leader> :mode<cr>
 nnoremap <leader>o :tabedit<space>
 nnoremap <leader>e :edit<space>
 nnoremap <leader>q :quit<cr>
@@ -33,6 +34,15 @@ nnoremap <c-j> :wincmd j<cr>
 nnoremap <c-k> :wincmd k<cr>
 nnoremap <c-l> :wincmd l<cr>
 
+" navigate terminal panes
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
+tnoremap <c-q> <c-\><c-n>:x<cr>
+tnoremap <esc> <c-\><c-n>
+nnoremap <c-q> <c-\><c-n>:x<cr>
+
 " scroll panes
 noremap <c-y> 2zh
 noremap <c-u> <c-e>j
@@ -53,10 +63,6 @@ nnoremap * *zz
 nnoremap # #zz
 
 " plugins
-""" coc.nvim
-nnoremap <leader>z :CocList files<cr>
-nnoremap <leader>r :CocList grep<cr>
-
 " This conflicts with <c-i>, search #tab-hack
 " use <tab> and <s-tab> to navigate the completion list
 inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -66,22 +72,76 @@ inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gvrc :edit $MYVIMRC<cr>
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+nmap <silent> gtni :edit $HOME/.vim/tasks.ini<cr>
+nmap <silent> gvrc :edit $HOME/.config/nvim/init.vim<cr>
+nmap <silent> gzrc :edit $HOME/.zshrc<cr>
+nmap <silent> gbrc :edit $HOME/.bashrc<cr>
+nmap <silent> gvrc :edit $HOME/.config/nvim/init.vim<cr>
+nmap <silent> galc :edit $HOME/.config/alacritty/alacritty.yml<cr>
+nmap <silent> gpbc :edit $HOME/.config/polybar/config<cr>
+nmap <silent> grfc :edit $HOME/.config/rofi/config.rasi<cr>
+nmap <silent> gsxc :edit $HOME/.config/sxhkd/sxhkdrc<cr>
+nmap <silent> gbsc :edit $HOME/.config/bspwm/bspwmrc<cr>
+nmap <silent> gtxc :edit $HOME/.config/tmux/tmux.conf<cr>
+nmap <silent> gals :edit $HOME/.config/zsh/custom/aliases.zsh<cr>
+nmap <silent> gstc :edit $HOME/.config/st/config.h<cr>
 
 " Use PageUp and PageDown to navigate diagnostics
 nmap <silent> <pageup> <Plug>(coc-diagnostic-prev)
 nmap <silent> <pagedown> <Plug>(coc-diagnostic-next)
 
-""" vista.vim
-nnoremap <silent> ]] :Vista!!<cr>
+nnoremap <silent> <leader> :WhichKey '<Space>'<cr>
+
+autocmd! FileType python imap ,pdb import ipdb; ipdb.set_trace(context=9)<esc>
+
+let g:which_key_map =  {}
+let g:which_key_map.a = {
+      \ 'name' : '+async-task' ,
+      \ 't'  : [':AsyncTask test'                    , 'test'],
+      \ 'r'  : [':AsyncTask render'                  , 'render'],
+      \ 'e'  : [':AsyncTaskEdit'                     , 'edit'],
+      \}
+let g:which_key_map.c = {
+      \ 'name' : '+coc' ,
+      \ 'c' : [':CocConfig'                          , 'Config'],
+      \ 'u' : [':CocUpdate'                          , 'Update'],
+      \ 'd' : [':CocDisable'                         , 'Disable'],
+      \ 'e' : [':CocEnable'                          , 'Enable'],
+      \}
+let g:which_key_map.c.l = {
+      \ 'name' : '+coc-list' ,
+      \ 'f' : [':CocList files'                      , 'files'],
+      \ 'g' : [':CocList grep'                       , 'grep'],
+      \ 'd' : [':CocList diagnostics'                , 'diagnostics'],
+      \ 'c' : [':CocList commands'                   , 'commands'],
+      \ 's' : [':CocList symbols'                    , 'symbols'],
+      \ 'n' : [':CocList snippets'                   , 'snippets'],
+      \ 'e' : [':CocList extensions'                 , 'extensions'],
+      \}
+let g:which_key_map.g = {
+      \ 'name' : '+goto' ,
+      \ 'v'  : [':Vista focus'                       , 'vista'],
+      \ 'e'  : [':CocCommand explorer --focus'       , 'explorer'],
+      \}
+let g:which_key_map.l = {
+      \ 'name' : '+lsp' ,
+      \ 'd'  : ['<Plug>(coc-definition)'             , 'definition'],
+      \ 'c'  : ['<Plug>(coc-codeaction)'             , 'codeaction'],
+      \ 'r'  : ['<Plug>(coc-references)'             , 'references'],
+      \ 'f'  : ['<Plug>(coc-format)'                 , 'format'],
+      \ 'n'  : ['<Plug>(coc-diagnostic-next)'        , 'next'],
+      \ 'p'  : ['<Plug>(coc-diagnostic-prev)'        , 'prev'],
+      \ 'rn' : ['<Plug>(coc-rename)'                 , 'rename'],
+      \ 'rf' : ['<Plug>(coc-refactor)'               , 'refactor'],
+      \}
+let g:which_key_map.p = {
+      \ 'name' : '+panel' ,
+      \ 'v'  : [':Vista!!'                           , 'vista'],
+      \ 'e'  : [':CocCommand explorer --toggle'      , 'explorer'],
+      \}
+let g:which_key_map.t = {
+      \ 'name' : '+terminal' ,
+      \ 't'  : [':FloatermToggle'                    , 'toggle'],
+      \ 'n'  : [':FloatermNew'                       , 'new'],
+      \}
+call which_key#register('<Space>', "g:which_key_map")

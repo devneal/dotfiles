@@ -29,11 +29,12 @@ alert = #bd2c40
 
 
 [bar/default]
+monitor = ${env:MONITOR:HDMI-A-0}
+margin-top = ${xrdb:polybar.main.height:45}
+height = ${xrdb:polybar.main.height:45}
+
 width = 97.6%
 offset-x = 1.2%
-height = ${xrdb:polybar.height:45}
-offset-y = 0
-radius = 6.0
 
 module-margin-left = 0
 module-margin-right = 2
@@ -48,19 +49,39 @@ wm-restack = bspwm
 
 modules-left = bspwm
 modules-center = mpd
-modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date rofi-screenshot
+modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date
 
 font-0 = SauceCodePro Nerd Font Mono:size=23;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 
-[module/rofi-screenshot]
-type = custom/script
-exec = echo 
-click-left = rofi-screenshot-dropdown.sh
-format-underline = #268bd2
-format-padding = 1
+[bar/aside]
+monitor = ${env:MONITOR:DisplayPort-0}
+margin-top = ${xrdb:polybar.aside.height:35}
+height = ${xrdb:polybar.aside.height:35}
+
+width = 97.6%
+offset-x = 1.2%
+
+module-margin-left = 0
+module-margin-right = 2
+padding-right = 1
+line-size = 3
+line-color = #f00
+background = #000
+foreground = #fff
+
+override-redirect = true
+wm-restack = bspwm
+
+modules-left = bspwm
+modules-center = mpd
+modules-right = date
+
+font-0 = SauceCodePro Nerd Font Mono:size=17;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
 
 
 [bar/example]
@@ -143,19 +164,19 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
@@ -450,9 +471,11 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
+offset-y = 0
+radius = 6.0
+
 background = ${colors.background}
 foreground = ${colors.foreground}
 margin-top = 0
-margin-bottom = 0
 
 ; vim:ft=dosini

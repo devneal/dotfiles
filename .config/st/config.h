@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "FiraMono Nerd Font:pixelsize=22:antialias=true:autohint=true";
+static char *font = "FiraMono Nerd Font Mono:pixelsize=26:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -42,6 +42,10 @@ static unsigned int tripleclicktimeout = 600;
 
 /* alt screens */
 int allowaltscreen = 1;
+
+/* allow certain non-interactive (insecure) window operations such as:
+   setting the clipboard text */
+int allowwindowops = 0;
 
 /*
  * draw latency range in ms - from new content/keypress/etc until drawing.
@@ -90,32 +94,42 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.9;
+float alpha = 0.75;
 
 /* Terminal colors (16 first used in escape sequence) */
+// Previously https://github.com/ajlende/base16-atlas-scheme
+//
+// Currently https://github.com/elenapan/dotfiles/blob/master/.xfiles/lovelace
+// with the purple and gray shades shifted 2 tints lighter:
+// https://www.color-hex.com/color/c574dd#shades-tints
+// https://www.color-hex.com/color/b043d1#shades-tints
+// https://www.color-hex.com/color/bebec1#shades-tints
 static const char *colorname[] = {
-  "#002635",
-  "#ff5a67",
-  "#7fc06e",
-  "#ffcc1b",
-  "#5dd7b9",
-  "#9a70a4",
-  "#14747e",
-  "#a1a19a",
-  "#6C8B91",
-  "#f08e48",
-  "#00384d",
-  "#517F8D",
-  "#869696",
-  "#e6e6dc",
-  "#c43060",
-  "#fafaf8",
+  "#282A36",
+  "#F37F97",
+  "#5ADECD",
+  "#F2A272",
+  "#8897F4",
+  "#D08FE3",
+  "#79E6F3",
+  "#FDFDFD",
+  "#414458",
+  "#FF4971",
+  "#18E3C8",
+  "#FF8037",
+  "#556FFF",
+  "#BF68DA",
+  "#3FDCEE",
+  "#CBCBCD",
+  [255] = 0,
+  "#1D1F28",
+  "#FDFDFD",
 };
 
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 7;
-static unsigned int defaultrcs = 0;
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+static unsigned int defaultcs = 5;
+static unsigned int defaultrcs = 13;
 
 /*
  * Default shape of cursor

@@ -8,7 +8,7 @@ export ZSH="/home/devneal/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="neorussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -77,6 +77,8 @@ globalias_ignore=(ls grep gcloud gsutil bq)
 
 # Aliases are set in $ZSH_CUSTOM/aliases.zsh
 
+unset PAGER
+export CONFIG="$HOME/.config"
 export EDITOR=/usr/bin/nvim
 export DOTFILES="$HOME/github/dotfiles"
 export FONTS="$XDG_DATA_HOME/fonts"
@@ -96,17 +98,58 @@ pathadd() {
     fi
 }
 
+pathadd ~/.config/bspwm
+pathadd ~/.config/st
+pathadd "$(yarn global bin)"
+source_if_exists /usr/share/fzf/key-bindings.zsh
+source_if_exists /usr/share/fzf/completion.zsh
+source_if_exists "$HOME/.poetry/env"
+
+# Switch to configuration directory.
 config() {
     cd "$HOME/.config/$1"
 }
 
-pathadd ~/.config/bspwm
-pathadd ~/.config/st
-source_if_exists /usr/share/fzf/key-bindings.zsh
-source_if_exists /usr/share/fzf/completion.zsh
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 source "$HOME/.local/bin/virtualenvwrapper.sh"
+
+# Set custom keyboard mappings and faster repeat rate here, since they tend to
+# revert back to the default.
+xkbcomp "$HOME/.config/xkb/keymaps.xkb" "$DISPLAY" 2> /dev/null
+xset r rate 200 55
+
+# LaTeX environment configuration.
+PATH="$PATH:/opt/texlive/2020/bin/x86_64-linux"
+MANPATH="$MANPATH:/opt/texlive/2020/texmf-dist/doc/man"
+INFOPATH="$INFOPATH:/opt/texlive/2020/texmf-dist/doc/info"
 
 # Return 0.
 true

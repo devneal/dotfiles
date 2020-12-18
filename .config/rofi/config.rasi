@@ -2,7 +2,7 @@ configuration {
 	modi: "window,drun,run,ssh";
 	scroll-method: 1;
 	lines: 15;
-	font: "SauceCodePro Nerd Font Mono 12";
+	font: "FiraMono Nerd Font Mono 18";
 /*	width: 50;*/
 /*	columns: 1;*/
 /*	bw: 1;*/
@@ -210,7 +210,7 @@ listview {
 }
 element {
     border:           0;
-    padding:          1px ;
+    padding:          1px 1px 1px 5px;
 }
 element normal.normal {
     background-color: @normal-background;

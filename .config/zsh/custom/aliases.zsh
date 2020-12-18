@@ -14,6 +14,7 @@ alias \
     txc='nvim $HOME/.config/tmux/tmux.conf' \
     als='nvim $HOME/.config/zsh/custom/aliases.zsh' \
     stc='nvim $HOME/.config/st/config.h' \
+    xrc='nvim $HOME/.xinitrc' \
     tmux='tmux -f $HOME/.config/tmux/tmux.conf' \
     t='tmux' \
     tls='tmux ls' \
@@ -25,4 +26,8 @@ alias \
     fonts='cd $FONTS' \
     screenshots='cd $SCREENSHOTS' \
     elr='cd $HOME/github/eulertour' \
-    mnm='cd $HOME/github/manim && workon manim'
+    ghub='cd $HOME/github' \
+    keys='xkbcomp $HOME/.config/xkb/keymaps.xkb $DISPLAY' \
+    mouse='pkill imwheel; imwheel -b 45' \
+    mnm='cd $HOME/github/manim' \
+    rnd='cd $HOME/github/manim-renderer'

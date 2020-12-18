@@ -10,6 +10,9 @@ super + Return
 super + d
 	rofi -show drun -show-icons
 
+super + e
+    rofimoji
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -76,9 +79,21 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+# focus or send to the given desktop on the main monitor
+# super + {_,shift + }{1-6}
+# 	bspc {desktop -f,node -d} '^{5-9,10}'
+super + {_,shift + }{1-6}
+	bspc {desktop -f,node -d} '^{1-6}'
+
+super + {_,shift + }KP_{End,Down,Next,Left,Begin,Right}
+	bspc {desktop -f,node -d} '^{5-9,10}'
+
+# focus or send to the given desktop on the second monitor
+super + {_,shift + }{7-9,0}
+	bspc {desktop -f,node -d} '^{1-3,4}'
+
+super + {_,shift + }KP_{Home,Up,Prior,Insert}
+	bspc {desktop -f,node -d} '^{1-3,4}'
 
 #
 # preselect
@@ -127,3 +142,6 @@ super + alt + {n,m}
 
 Print
     maim -s /home/devneal/pictures/printscreen.png
+
+shift + Print
+    maim /home/devneal/pictures/printscreen.png

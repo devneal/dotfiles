@@ -1,19 +1,31 @@
 #! /bin/sh
 
-polybar -r default &
+"$HOME/.screenlayout/second_left_monitor.sh"
+"$HOME/.fehbg"
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+# MAIN_MONITOR=HDMI-A-0
+MAIN_MONITOR=HDMI-0
+SECONDARY_MONITOR=DisplayPort-1
+MONITOR="$MAIN_MONITOR" polybar -r default &
+MONITOR="$SECONDARY_MONITOR" polybar -r aside &
 
-bspc config top_padding         $(xgetres polybar.height)
-bspc config border_width        4
-bspc config window_gap          48
+bspc monitor "$MAIN_MONITOR" -d 1 2 3 4 5 6
+bspc monitor "$SECONDARY_MONITOR" -d 7 8 9 10
+
+bspc config border_width          4
+
+# Secondary monitor
+bspc monitor -f ^1
+bspc config -m focused top_padding         $(xgetres polybar.aside.height)
+bspc config -m focused window_gap          16
+
+# Main monitor
+bspc monitor -f ^2
+bspc config -m focused top_padding         $(xgetres polybar.main.height)
+bspc config -m focused window_gap          48
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
-bspc config gapless_monocle      true
-
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+bspc config gapless_monocle      false
+bspc rule --add ModernGL state=pseudo_tiled
+bspc rule --add mpv state=floating rectangle=1920x1080+960+540

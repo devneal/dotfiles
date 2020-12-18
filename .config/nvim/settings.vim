@@ -1,12 +1,18 @@
-autocmd BufRead,BufNewFile *.htm,*.html,*.vue,*.js setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufRead,BufNewFile *.htm,*.html,*.vue,*.js,*.json,*.yml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufEnter * :syntax sync fromstart
+autocmd FileType vista,vista_kind nnoremap <buffer> <silent> q :close<CR>
+autocmd FileType vista,vista_kind nnoremap <buffer> <silent> o :<c-u>call vista#cursor#FoldOrJump()<CR>
+autocmd FileType vista,vista_kind nnoremap <buffer> <silent> s :<c-u>call vista#Sort()<CR>
+autocmd FileType vista,vista_kind nnoremap <buffer> <silent> p :<c-u>call vista#cursor#TogglePreview()<CR>
+
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 """ settings
-highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 syntax enable
 colorscheme default
+highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 set clipboard+=unnamedplus      " use the clipboard for all operations
 set timeoutlen=500              " wait time for maps with a shared prefix
 set completeopt-=preview        " don't show information about selected completion in preview window
@@ -30,7 +36,7 @@ set scrolljump=0                " smooth scrolling at top/bottom of page
 set cursorline                  " highlight the screen line of the cursor with CursorLine hl-CursorLine
 set showcmd                     " show partial command in the last line of the screen
 set t_Co=256                    " number of colors
-set colorcolumn=81              " highlight a column
+set colorcolumn=89              " highlight a column
 set viminfo='1000,f1            " options for viminfo file (persistent memory)
 set autoread                    " automatically update files changed outside of vim
 set belloff=all                 " never ring the bell
