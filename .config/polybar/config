@@ -33,8 +33,8 @@ monitor = ${env:MONITOR:HDMI-A-0}
 margin-top = ${xrdb:polybar.main.height:45}
 height = ${xrdb:polybar.main.height:45}
 
-width = 97.6%
-offset-x = 1.2%
+width = 97%
+offset-x = 1.5%
 
 module-margin-left = 0
 module-margin-right = 2
@@ -51,7 +51,7 @@ modules-left = bspwm
 modules-center = mpd
 modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date
 
-font-0 = SauceCodePro Nerd Font Mono:size=23;1
+font-0 = SauceCodePro Nerd Font Mono:size=18;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 

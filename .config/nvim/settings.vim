@@ -1,13 +1,5 @@
 autocmd BufRead,BufNewFile *.htm,*.html,*.vue,*.js,*.json,*.yml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufEnter * :syntax sync fromstart
-autocmd FileType vista,vista_kind nnoremap <buffer> <silent> q :close<CR>
-autocmd FileType vista,vista_kind nnoremap <buffer> <silent> o :<c-u>call vista#cursor#FoldOrJump()<CR>
-autocmd FileType vista,vista_kind nnoremap <buffer> <silent> s :<c-u>call vista#Sort()<CR>
-autocmd FileType vista,vista_kind nnoremap <buffer> <silent> p :<c-u>call vista#cursor#TogglePreview()<CR>
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 """ settings
 syntax enable

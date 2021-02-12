@@ -30,4 +30,5 @@ alias \
     keys='xkbcomp $HOME/.config/xkb/keymaps.xkb $DISPLAY' \
     mouse='pkill imwheel; imwheel -b 45' \
     mnm='cd $HOME/github/manim' \
-    rnd='cd $HOME/github/manim-renderer'
+    rnd='cd $HOME/github/manim-renderer' \
+    onl='cd $HOME/github/manim-online'

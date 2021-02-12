@@ -75,7 +75,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 globalias_ignore=(ls grep gcloud gsutil bq)
 
-# Aliases are set in $ZSH_CUSTOM/aliases.zsh
+# Aliases are set in $HOME/.config/zsh/custom/aliases.zsh
 
 unset PAGER
 export CONFIG="$HOME/.config"
@@ -153,3 +153,5 @@ INFOPATH="$INFOPATH:/opt/texlive/2020/texmf-dist/doc/info"
 
 # Return 0.
 true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

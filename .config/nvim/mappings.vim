@@ -62,29 +62,48 @@ nnoremap N Nzz
 nnoremap * *zz
 nnoremap # #zz
 
-" plugins
+" Navigate buffers
+nnoremap <leader>, :bnext<cr>
+nnoremap <leader>. :bprevious<cr>
+
 " This conflicts with <c-i>, search #tab-hack
 " use <tab> and <s-tab> to navigate the completion list
 inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-" use <cr> to confirm completion
+" Use <cr> to confirm completion
 inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
 
+" Save without sudo
+cmap w!! w !sudo tee %
+
 " Remap keys for gotos
-nmap <silent> gtni :edit $HOME/.vim/tasks.ini<cr>
-nmap <silent> gvrc :edit $HOME/.config/nvim/init.vim<cr>
-nmap <silent> gzrc :edit $HOME/.zshrc<cr>
-nmap <silent> gbrc :edit $HOME/.bashrc<cr>
-nmap <silent> gvrc :edit $HOME/.config/nvim/init.vim<cr>
-nmap <silent> galc :edit $HOME/.config/alacritty/alacritty.yml<cr>
-nmap <silent> gpbc :edit $HOME/.config/polybar/config<cr>
-nmap <silent> grfc :edit $HOME/.config/rofi/config.rasi<cr>
-nmap <silent> gsxc :edit $HOME/.config/sxhkd/sxhkdrc<cr>
-nmap <silent> gbsc :edit $HOME/.config/bspwm/bspwmrc<cr>
-nmap <silent> gtxc :edit $HOME/.config/tmux/tmux.conf<cr>
-nmap <silent> gals :edit $HOME/.config/zsh/custom/aliases.zsh<cr>
-nmap <silent> gstc :edit $HOME/.config/st/config.h<cr>
+nmap <silent> gtni :edit    $HOME/.vim/tasks.ini<cr>
+nmap <silent> Gtni :tabedit $HOME/.vim/tasks.ini<cr>
+nmap <silent> gvrc :edit    $HOME/.config/nvim/init.vim<cr>
+nmap <silent> Gvrc :tabedit $HOME/.config/nvim/init.vim<cr>
+nmap <silent> gzrc :edit    $HOME/.zshrc<cr>
+nmap <silent> Gzrc :tabedit $HOME/.zshrc<cr>
+nmap <silent> gbrc :edit    $HOME/.bashrc<cr>
+nmap <silent> Gbrc :tabedit $HOME/.bashrc<cr>
+nmap <silent> gvrc :edit    $HOME/.config/nvim/init.vim<cr>
+nmap <silent> Gvrc :tabedit $HOME/.config/nvim/init.vim<cr>
+nmap <silent> galc :edit    $HOME/.config/alacritty/alacritty.yml<cr>
+nmap <silent> Galc :tabedit $HOME/.config/alacritty/alacritty.yml<cr>
+nmap <silent> gpbc :edit    $HOME/.config/polybar/config<cr>
+nmap <silent> Gpbc :tabedit $HOME/.config/polybar/config<cr>
+nmap <silent> grfc :edit    $HOME/.config/rofi/config.rasi<cr>
+nmap <silent> Grfc :tabedit $HOME/.config/rofi/config.rasi<cr>
+nmap <silent> gsxc :edit    $HOME/.config/sxhkd/sxhkdrc<cr>
+nmap <silent> Gsxc :tabedit $HOME/.config/sxhkd/sxhkdrc<cr>
+nmap <silent> gbsc :edit    $HOME/.config/bspwm/bspwmrc<cr>
+nmap <silent> Gbsc :tabedit $HOME/.config/bspwm/bspwmrc<cr>
+nmap <silent> gtxc :edit    $HOME/.config/tmux/tmux.conf<cr>
+nmap <silent> Gtxc :tabedit $HOME/.config/tmux/tmux.conf<cr>
+nmap <silent> gals :edit    $HOME/.config/zsh/custom/aliases.zsh<cr>
+nmap <silent> Gals :tabedit $HOME/.config/zsh/custom/aliases.zsh<cr>
+nmap <silent> gstc :edit    $HOME/.config/st/config.h<cr>
+nmap <silent> Gstc :tabedit $HOME/.config/st/config.h<cr>
 
 " Use PageUp and PageDown to navigate diagnostics
 nmap <silent> <pageup> <Plug>(coc-diagnostic-prev)
@@ -115,8 +134,11 @@ let g:which_key_map.c.l = {
       \ 'd' : [':CocList diagnostics'                , 'diagnostics'],
       \ 'c' : [':CocList commands'                   , 'commands'],
       \ 's' : [':CocList symbols'                    , 'symbols'],
-      \ 'n' : [':CocList snippets'                   , 'snippets'],
+      \ 'i' : [':CocList snippets'                   , 'snippets'],
       \ 'e' : [':CocList extensions'                 , 'extensions'],
+      \ 'r' : [':CocListResume'                      , 'resume'],
+      \ 'n' : [':CocNext'                            , 'next'],
+      \ 'p' : [':CocPrev'                            , 'previous'],
       \}
 let g:which_key_map.g = {
       \ 'name' : '+goto' ,
@@ -125,23 +147,23 @@ let g:which_key_map.g = {
       \}
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
-      \ 'd'  : ['<Plug>(coc-definition)'             , 'definition'],
-      \ 'c'  : ['<Plug>(coc-codeaction)'             , 'codeaction'],
-      \ 'r'  : ['<Plug>(coc-references)'             , 'references'],
-      \ 'f'  : ['<Plug>(coc-format)'                 , 'format'],
-      \ 'n'  : ['<Plug>(coc-diagnostic-next)'        , 'next'],
-      \ 'p'  : ['<Plug>(coc-diagnostic-prev)'        , 'prev'],
-      \ 'rn' : ['<Plug>(coc-rename)'                 , 'rename'],
-      \ 'rf' : ['<Plug>(coc-refactor)'               , 'refactor'],
+      \ 'd'  : ['<Plug>(coc-definition)'                    , 'definition'],
+      \ 'D'  : [':call CocAction("jumpDefinition", "tabe")' , 'tabedit definition'],
+      \ 'c'  : ['<Plug>(coc-codeaction)'                    , 'codeaction'],
+      \ 'r'  : ['<Plug>(coc-references)'                    , 'references'],
+      \ 'f'  : ['<Plug>(coc-format)'                        , 'format'],
+      \ 'n'  : ['<Plug>(coc-rename)'                        , 'rename'],
+      \ 'rf' : ['<Plug>(coc-refactor)'                      , 'refactor'],
       \}
 let g:which_key_map.p = {
       \ 'name' : '+panel' ,
       \ 'v'  : [':Vista!!'                           , 'vista'],
       \ 'e'  : [':CocCommand explorer --toggle'      , 'explorer'],
       \}
-let g:which_key_map.t = {
-      \ 'name' : '+terminal' ,
+let g:which_key_map.f = {
+      \ 'name' : '+floaterm' ,
       \ 't'  : [':FloatermToggle'                    , 'toggle'],
       \ 'n'  : [':FloatermNew'                       , 'new'],
+      \ 'p'  : [':FloatermNew python'                , 'python'],
       \}
 call which_key#register('<Space>', "g:which_key_map")
